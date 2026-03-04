@@ -75,6 +75,12 @@ const Login = () => {
                         />
                     </div>
 
+                    <div style={{ textAlign: 'right', marginTop: '-0.5rem', marginBottom: '1rem' }}>
+                        <Link to="/forgot-password" style={{ fontSize: '0.82rem', color: '#e8610a', textDecoration: 'none', fontWeight: 600 }}>
+                            Forgot Password?
+                        </Link>
+                    </div>
+
                     <button type="submit" className="auth-btn" disabled={loading}>
                         {loading && <span className="auth-spinner" />}
                         {loading ? 'Logging in...' : 'Login'}

@@ -13,6 +13,9 @@ import Services from './pages/Services';
 import AuthGuard from './auth/AuthGuard';
 import OrderSuccess from './pages/OrderSuccess';
 import TrackOrder from './pages/TrackOrder';
+import VerifyOTP from './pages/VerifyOTP';
+import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 
 // Public Route
 const PublicRoute = ({ children }) => {
@@ -33,6 +36,9 @@ const AppRoutes = () => (
         <Route path="/services" element={<Services />} />
         <Route path="/track" element={<TrackOrder />} />
         <Route path="/track/:trackingNumber" element={<TrackOrder />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Auth pages — redirect to dashboard if already logged in */}
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />

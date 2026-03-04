@@ -49,3 +49,8 @@ export const getLatestLocation = (orderId) => API.get(`/orders/${orderId}/tracki
 export const getMyNotifications = () => API.get('/notifications');
 export const markAllAsRead = () => API.patch('/notifications/read-all');
 export const markOneAsRead = (notificationId) => API.patch(`/notifications/${notificationId}/read`);
+
+
+export const forgotPassword = (data) => api.post('/forgot-password', data);
+export const verifyOTP = (data) => api.post('/verify-otp', data);
+export const resetPassword = (data) => api.post('/reset-password', data);
