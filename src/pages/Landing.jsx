@@ -95,6 +95,9 @@ const Landing = () => {
                     transition: opacity 0.7s ease, transform 0.7s ease;
                 }
                 .cta-section.visible { opacity: 1; transform: scale(1); }
+
+                /* ── Footer links ── */
+footer a:hover { color: #fdb813 !important; opacity: 1 !important; transition: color 0.15s; }
             `}</style>
 
             <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', paddingTop: '100px' }} />
@@ -146,7 +149,7 @@ const Landing = () => {
                             <p className="hero-tagline text-uppercase fw-semibold mb-3" style={{ letterSpacing: '2px', color: '#fdb813' }}>Now Live in Your City</p>
                             <h1 className="hero-heading display-3 fw-bold mb-4" style={{ color: '#0a1a3f', lineHeight: '1.1' }}>
                                 Your package,<br />
-                                <span style={{ color: '#fdb813' }}>delivered fast.</span>
+                                <span style={{ color: '#fdb813' }}>delivered fast with love.</span>
                             </h1>
                             <p className="hero-sub lead fw-bold mb-2" style={{ color: '#0a1a3f' }}>Delivering Trust, On Time. Every Time.</p>
                             <p className="hero-para mb-4 fw-bold" style={{ color: '#0a1a3f', maxWidth: '480px' }}>
@@ -263,11 +266,6 @@ const Landing = () => {
                                     </button>
                                 </div>
                             </form>
-                            <div className="d-flex flex-wrap gap-2 mt-4 justify-content-center">
-                                {['Pending', 'Assigned', 'Picked Up', 'In Transit', 'Delivered', 'Confirmed'].map((s, i) => (
-                                    <span key={i} style={{ padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.1)' }}>{s}</span>
-                                ))}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,7 +274,7 @@ const Landing = () => {
             {/* ── Start Now CTA ── */}
             <section ref={ctaRef} className={`cta-section py-4 ${ctaInView ? 'visible' : ''}`} style={{ backgroundColor: '#f3f4f5' }}>
                 <div className="container text-center text-white py-lg-5">                    <p className="text-uppercase mb-3 fw-semibold" style={{ letterSpacing: '2px', color: '#fdb813' }}>Start Now</p>
-                    <h2 className="display-5 fw-bold mb-4" style={{color: '#05102e'}}>Ready to send your first package?</h2>
+                    <h2 className="display-5 fw-bold mb-4" style={{ color: '#05102e' }}>Ready to send your first package?</h2>
                     <p className="lead mb-4" style={{ maxWidth: '700px', margin: '0 auto 2rem auto', opacity: 0.9, color: '#05102e' }}>
                         Join thousands of happy customers using LOVELISTICS. Fast, secure, and affordable delivery at your fingertips.
                     </p>

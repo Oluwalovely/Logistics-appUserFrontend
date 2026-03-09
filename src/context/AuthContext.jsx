@@ -6,20 +6,18 @@ const cookies = new Cookies();
 
 const COOKIE_OPTIONS = {
     path: '/',
-    maxAge: 18000, // 5 hours in seconds — matches JWT expiresIn: "5h"
+    maxAge: 18000,
 };
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser]   = useState(null);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
     const isAuthenticated = !!token;
 
-    // ─── Load user from cookies on app start ──────────────────
     useEffect(() => {
         const savedToken = cookies.get('token');
-        const savedUser = cookies.get('user');
-
+        const savedUser  = cookies.get('user');
         if (savedToken && savedUser) {
             setToken(savedToken);
             setUser(savedUser);
@@ -27,7 +25,6 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
-    // ─── Login ────────────────────────────────────────────────
     const login = (userData, userToken) => {
         setUser(userData);
         setToken(userToken);
@@ -35,7 +32,15 @@ export const AuthProvider = ({ children }) => {
         cookies.set('user', userData, COOKIE_OPTIONS);
     };
 
-    // ─── Logout ───────────────────────────────────────────────
+    // Safe partial update — only patches user fields, never touches token
+    const updateUser = (updatedData) => {
+        setUser(prev => {
+            const merged = { ...prev, ...updatedData };
+            cookies.set('user', merged, COOKIE_OPTIONS);
+            return merged;
+        });
+    };
+
     const logout = () => {
         setUser(null);
         setToken(null);
@@ -44,7 +49,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, token, login, logout, loading, isAuthenticated }}>
+        <AuthContext.Provider value={{ user, token, login, logout, updateUser, loading, isAuthenticated }}>
             {children}
         </AuthContext.Provider>
     );

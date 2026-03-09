@@ -14,8 +14,9 @@ import AuthGuard from './auth/AuthGuard';
 import OrderSuccess from './pages/OrderSuccess';
 import TrackOrder from './pages/TrackOrder';
 import VerifyOTP from './pages/VerifyOTP';
-import ResetPassword from './pages/ResetPassword';
+import ResetPassword from './pages/Resetpassword';
 import ForgotPassword from './pages/ForgotPassword';
+import Profile from './pages/Profile';
 
 // Public Route
 const PublicRoute = ({ children }) => {
@@ -51,6 +52,7 @@ const AppRoutes = () => (
             <Route path="/orders/:orderId" element={<OrderDetails />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/order-success" element={<OrderSuccess />} />
+            <Route path="/profile" element={<Profile />} />
         </Route>
 
         {/* Catch all */}
