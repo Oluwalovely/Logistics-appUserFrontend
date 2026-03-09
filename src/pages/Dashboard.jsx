@@ -6,7 +6,7 @@ import {
     Package, PlusCircle, Bell, CheckCircle, XCircle,
     Zap, MapPin, Flag, Search,
     LogOut, User, Menu, ArrowRight, AlertCircle, Truck,
-    ExternalLink, Navigation
+    ExternalLink, Navigation, ChevronRight
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
@@ -99,11 +99,13 @@ const Sidebar = ({ open, onClose, onLogoutRequest, user, unreadCount }) => {
             {open && <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 150 }} />}
             <aside style={{ width: 255, flexShrink: 0, background: T.sidebar, position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 160, display: 'flex', flexDirection: 'column' }}
                 className={`gig-sidebar${open ? ' sidebar-open' : ''}`}>
+
                 {/* Brand */}
                 <div style={{ padding: '1.15rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
                     <img src={logo} alt="logo" style={{ width: 34, height: 34, objectFit: 'contain', borderRadius: 8, flexShrink: 0 }} />
                     <span style={{ fontWeight: 900, fontSize: '0.95rem', color: '#fff', letterSpacing: '1.5px' }}>LOVELISTICS</span>
                 </div>
+
                 {/* Nav */}
                 <nav style={{ padding: '0.85rem 0.65rem', flex: 1, overflowY: 'auto' }}>
                     {sidebarLinks.map(link => {
@@ -121,15 +123,24 @@ const Sidebar = ({ open, onClose, onLogoutRequest, user, unreadCount }) => {
                         );
                     })}
                 </nav>
+
                 {/* Bottom */}
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', flexShrink: 0 }}>
-                    <div style={{ padding: '0.85rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+
+                    {/* User card — clickable, links to /profile */}
+                    <Link to="/profile" onClick={onClose}
+                        style={{ padding: '0.85rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'background 0.15s', cursor: 'pointer' }}
+                        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                         <Avatar user={user} size={38} fontSize="1rem" />
-                        <div style={{ minWidth: 0 }}>
+                        <div style={{ minWidth: 0, flex: 1 }}>
                             <p style={{ margin: 0, fontWeight: 700, color: '#fff', fontSize: '0.85rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.fullName}</p>
                             <p style={{ margin: 0, fontSize: '0.68rem', color: 'rgba(255,255,255,0.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user?.email}</p>
                         </div>
-                    </div>
+                        <ChevronRight size={14} color="rgba(255,255,255,0.25)" style={{ flexShrink: 0 }} />
+                    </Link>
+
+                    {/* Logout */}
                     <div style={{ padding: '0.6rem 0.65rem' }}>
                         <button onClick={() => { onClose(); onLogoutRequest(); }}
                             style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '100%', padding: '0.65rem 0.9rem', borderRadius: 10, background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.45)', fontSize: '0.88rem', fontWeight: 500, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', transition: 'background 0.15s, color 0.15s' }}
@@ -212,7 +223,6 @@ const OrderRow = ({ order }) => {
         <div style={{ borderBottom: `1px solid ${T.border}`, background: hovered ? '#fafbff' : T.white, transition: 'background 0.12s', cursor: 'pointer' }}
             onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
             <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1.3fr 1.3fr 100px 110px 90px', gap: '0.5rem', alignItems: 'start', padding: '0.9rem 1.25rem' }}>
-                {/* Tracking ID */}
                 <div>
                     <Link to={`/orders/${order._id}`}
                         style={{ fontWeight: 700, color: hovered ? T.orange : T.navy, fontSize: '0.82rem', textDecoration: hovered ? 'underline' : 'none', display: 'inline-flex', alignItems: 'center', gap: '0.3rem', transition: 'color 0.15s' }}>
