@@ -44,7 +44,8 @@ export const markOneAsRead = (notificationId) => API.patch(`/notifications/${not
 export const forgotPassword = (data) => API.post('/forgot-password', data);
 export const verifyOTP = (data) => API.post('/verify-otp', data);
 export const resetPassword = (data) => API.post('/reset-password', data);
+export const changePassword = (data) => API.post('/change-password', data);
 
-export const updateProfile = (formData) => API.patch('/users/profile', formData, {
+export const updateProfile = (formData) => API.patch('/update-profile', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
 });

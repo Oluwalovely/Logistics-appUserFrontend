@@ -87,7 +87,7 @@ const MobileBar = ({ onMenuOpen, unreadCount }) => (
 /* ── Sidebar ─────────────────────────────────────── */
 const sidebarLinks = [
     { label: 'My Orders',     icon: <Package size={18} />,    to: '/dashboard',     key: 'orders' },
-    { label: 'Place Order',   icon: <PlusCircle size={18} />, to: '/create-order',  key: 'new' },
+    { label: 'Create Order',   icon: <PlusCircle size={18} />, to: '/create-order',  key: 'new' },
     { label: 'Notifications', icon: <Bell size={18} />,       to: '/notifications', key: 'notif' },
     { label: 'My Profile',    icon: <User size={18} />,       to: '/profile',       key: 'profile' },
 ];
@@ -346,15 +346,15 @@ const Dashboard = () => {
 
                     {/* Page header */}
                     <div style={{ marginBottom: '2rem', animation: 'fadeUp 0.3s ease both' }}>
-                        <h1 style={{ fontWeight: 900, color: T.navy, fontSize: '1.45rem', margin: '0 0 0.2rem', letterSpacing: '-0.3px' }}>My Orders</h1>
-                        <p style={{ margin: 0, color: T.muted, fontSize: '0.83rem' }}>
-                            Welcome back, <strong style={{ color: T.dark }}>{user?.fullName}</strong> — here's your shipment overview.
-                        </p>
+                        <p style={{ fontWeight: 600, color: T.navy, fontSize: '1.45rem', margin: '0 0 0.2rem', letterSpacing: '-0.3px' }}>My Orders</p>
+                        <h1 style={{ margin: 0, color: T.muted, fontSize: '0.83rem' }}>
+                            Welcome back, <strong style={{ color: T.dark, fontWeight: 600 }}>{user?.fullName}</strong> — here's your order overview.
+                        </h1>
                     </div>
 
                     {/* Stat cards */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '1rem', marginBottom: '1.75rem', animation: 'fadeUp 0.35s ease both', animationDelay: '0.05s' }}>
-                        <StatCard label="Total Orders"  value={stats.total}     sub={`${stats.total === 1 ? '1 shipment' : `${stats.total} shipments`} created`}          icon={<Package size={20} />}     color={T.navy} />
+                        <StatCard label="Total Orders"  value={stats.total}     sub={`${stats.total === 1 ? '1 order' : `${stats.total} orders`} created`}          icon={<Package size={20} />}     color={T.navy} />
                         <StatCard label="Active"        value={stats.active}    sub={stats.active === 0 ? 'None in transit' : `${stats.active} currently moving`}          icon={<Zap size={20} />}         color="#2563eb" />
                         <StatCard label="Delivered"     value={stats.delivered} sub={stats.delivered === 0 ? 'No deliveries yet' : `${stats.delivered} completed`}         icon={<CheckCircle size={20} />} color="#16a34a" />
                         <StatCard label="Cancelled"     value={stats.cancelled} sub={stats.cancelled === 0 ? 'None cancelled' : `${stats.cancelled} cancelled`}            icon={<XCircle size={20} />}     color="#dc2626" />
@@ -363,7 +363,7 @@ const Dashboard = () => {
                     {/* Action banner */}
                     <div style={{ background: `linear-gradient(135deg, ${T.navy} 0%, #1e3a8a 100%)`, borderRadius: 16, padding: '1.35rem 1.75rem', marginBottom: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', boxShadow: '0 4px 24px rgba(13,31,79,0.18)', animation: 'fadeUp 0.4s ease both', animationDelay: '0.1s' }}>
                         <div>
-                            <p style={{ margin: 0, fontWeight: 800, color: '#fff', fontSize: '1rem', letterSpacing: '-0.1px' }}>Create a Shipment</p>
+                            <p style={{ margin: 0, fontWeight: 800, color: '#fff', fontSize: '1rem', letterSpacing: '-0.1px' }}>Create an Order</p>
                             <p style={{ margin: '0.2rem 0 0', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>Place a new order in less than 2 minutes</p>
                         </div>
                         <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
@@ -373,12 +373,7 @@ const Dashboard = () => {
                                 onMouseLeave={e => { e.currentTarget.style.background = T.orange; e.currentTarget.style.transform = 'translateY(0)'; }}>
                                 <Truck size={14} /> Create Order <ArrowRight size={13} />
                             </Link>
-                            <Link to="/dashboard"
-                                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', padding: '0.6rem 1.3rem', borderRadius: 10, fontWeight: 600, fontSize: '0.85rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0, border: '1px solid rgba(255,255,255,0.15)', transition: 'background 0.15s' }}
-                                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.18)'}
-                                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}>
-                                <Navigation size={14} /> Track Shipment
-                            </Link>
+                            
                         </div>
                     </div>
 
@@ -386,7 +381,7 @@ const Dashboard = () => {
                     <div style={{ background: T.white, borderRadius: 16, border: `1px solid ${T.border}`, boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03)', overflow: 'hidden', animation: 'fadeUp 0.45s ease both', animationDelay: '0.15s' }}>
                         {/* Toolbar */}
                         <div style={{ padding: '1rem 1.25rem', borderBottom: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', background: T.white }}>
-                            <h2 style={{ margin: 0, fontWeight: 700, color: T.dark, fontSize: '0.95rem', flex: 1 }}>Shipment History</h2>
+                            <h2 style={{ margin: 0, fontWeight: 700, color: T.dark, fontSize: '0.95rem', flex: 1 }}>Order History</h2>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: T.light, border: `1px solid ${T.border}`, borderRadius: 9, padding: '0.4rem 0.8rem', transition: 'border-color 0.15s' }}
                                 onFocus={e => e.currentTarget.style.borderColor = T.navy}
                                 onBlur={e => e.currentTarget.style.borderColor = T.border}>
