@@ -13,7 +13,7 @@ import Services from './pages/Services';
 import AuthGuard from './auth/AuthGuard';
 import OrderSuccess from './pages/OrderSuccess';
 import TrackOrder from './pages/TrackOrder';
-import VerifyOTP from './pages/VerifyOTP';
+import VerifyOTP from './pages/Verifyotp';
 import ResetPassword from './pages/Resetpassword';
 import ForgotPassword from './pages/ForgotPassword';
 import Profile from './pages/Profile';
