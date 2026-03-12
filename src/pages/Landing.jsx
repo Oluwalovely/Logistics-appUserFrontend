@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search } from 'lucide-react';
 import logo from '../assets/logo.png';
 import heroBackground from '../assets/hero-bg.png';
@@ -42,18 +44,22 @@ const useInView = (options = {}) => {
 
 const Landing = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [trackingNumber, setTrackingNumber] = useState('');
     const navigate = useNavigate();
 
     const [howItWorksRef, howItWorksInView] = useInView();
     const [ctaRef, ctaInView] = useInView();
 
-    const handleTrack = (e) => {
-        e.preventDefault();
-        const trimmed = trackingNumber.trim();
-        if (!trimmed) return;
-        navigate(`/track/${trimmed}`);
-    };
+    const formik = useFormik({
+        initialValues: { trackingNumber: '' },
+        validationSchema: Yup.object({
+            trackingNumber: Yup.string()
+                .trim()
+                .required('Please enter a tracking number to continue.'),
+        }),
+        onSubmit: (values) => {
+            navigate(`/track/${values.trackingNumber.trim()}`);
+        },
+    });
 
     return (
         <>
@@ -246,25 +252,48 @@ footer a:hover { color: #fdb813 !important; opacity: 1 !important; transition: c
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
-                            <form onSubmit={handleTrack}>
+                            <form onSubmit={formik.handleSubmit} noValidate>
                                 <div className="d-flex gap-2">
                                     <div className="position-relative flex-grow-1">
                                         <Package size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#6b7a99', pointerEvents: 'none' }} />
                                         <input
                                             type="text"
-                                            value={trackingNumber}
-                                            onChange={e => setTrackingNumber(e.target.value)}
+                                            name="trackingNumber"
+                                            id="trackingNumber"
+                                            value={formik.values.trackingNumber}
+                                            onChange={formik.handleChange}
                                             placeholder="Enter tracking number e.g. TRK-8842"
-                                            style={{ width: '100%', padding: '0.85rem 1rem 0.85rem 2.8rem', borderRadius: '12px', border: '2px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.08)', color: '#fff', fontSize: '0.95rem', outline: 'none' }}
+                                            style={{
+                                                width: '100%', padding: '0.85rem 1rem 0.85rem 2.8rem',
+                                                borderRadius: '12px',
+                                                border: `2px solid ${
+                                                    formik.touched.trackingNumber && formik.errors.trackingNumber
+                                                        ? '#ff6b6b'
+                                                        : 'rgba(255,255,255,0.1)'
+                                                }`,
+                                                background: 'rgba(255,255,255,0.08)', color: '#fff',
+                                                fontSize: '0.95rem', outline: 'none',
+                                            }}
                                             onFocus={e => e.target.style.borderColor = '#fdb813'}
-                                            onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+                                            onBlur={e => {
+                                                formik.handleBlur(e);
+                                                e.target.style.borderColor =
+                                                    formik.errors.trackingNumber
+                                                        ? '#ff6b6b'
+                                                        : 'rgba(255,255,255,0.1)';
+                                            }}
                                         />
                                     </div>
                                     <button type="submit" className="btn fw-bold d-flex align-items-center gap-2"
-                                        style={{ background: '#fdb813', color: '#0a1a3f', borderRadius: '12px', padding: '0.85rem 1.5rem', whiteSpace: 'nowrap', border: 'none' }}>
+                                        style={{ background: '#fdb813', color: '#0a1a3f', borderRadius: '12px', padding: '0.85rem 1.5rem', whiteSpace: 'nowrap', border: 'none', alignSelf: 'flex-start' }}>
                                         <Search size={16} /> Track
                                     </button>
                                 </div>
+                                {formik.touched.trackingNumber && formik.errors.trackingNumber && (
+                                    <p style={{ color: '#ff6b6b', fontSize: '0.82rem', marginTop: '0.5rem', marginLeft: '0.25rem', marginBottom: 0 }}>
+                                        {formik.errors.trackingNumber}
+                                    </p>
+                                )}
                             </form>
                         </div>
                     </div>
