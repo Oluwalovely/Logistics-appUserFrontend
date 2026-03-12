@@ -308,7 +308,7 @@ footer a:hover { color: #fdb813 !important; opacity: 1 !important; transition: c
                             <ul className="list-unstyled">
                                 <li className="mb-2"><Link to="/login" className="text-white text-decoration-none" style={{ opacity: 0.7 }}>Login</Link></li>
                                 <li className="mb-2"><Link to="/register" className="text-white text-decoration-none" style={{ opacity: 0.7 }}>Sign Up</Link></li>
-                                <li className="mb-2"><a href={`${DRIVER_APP_URL}`} className="text-white text-decoration-none" style={{ opacity: 0.7 }} target="_blank" rel="noopener noreferrer">Drive for Us</a></li>
+                                <li className="mb-2"><a href={`${DRIVER_APP_URL}/register`} className="text-white text-decoration-none" style={{ opacity: 0.7 }} target="_blank" rel="noopener noreferrer">Drive for Us</a></li>
                                 <li className="mb-2"><Link to="/track" className="text-white text-decoration-none" style={{ opacity: 0.7 }}>Track Order</Link></li>
                             </ul>
                         </div>
