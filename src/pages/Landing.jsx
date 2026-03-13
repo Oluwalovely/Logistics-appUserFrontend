@@ -100,10 +100,25 @@ const Landing = () => {
                 .cta-section { opacity: 0; transform: scale(0.97); transition: opacity 0.7s ease, transform 0.7s ease; }
                 .cta-section.visible { opacity: 1; transform: scale(1); }
 
-                /* ── Hero mobile spacing (desktop unchanged) ── */
-                .hero-row { margin-top: -12rem; }
-                @media (max-width: 991px) { .hero-row { margin-top: 2rem; } }
-                @media (max-width: 575px)  { .hero-row { margin-top: 4rem; } }
+                /* ── Hero background: adjust focal point on mobile ── */
+                .hero-section { background-size: cover; background-position: center 30%; }
+                @media (max-width: 767px) {
+                    .hero-section { background-position: 70% center; }
+                }
+
+                /* ── Hero text: tablet + mobile tweaks ── */
+                @media (max-width: 991px) {
+                    .hero-content { text-align: center !important; }
+                    .hero-content .hero-para { max-width: 100% !important; margin-left: auto; margin-right: auto; }
+                    .hero-heading { font-size: 2.8rem !important; }
+                }
+                @media (max-width: 575px) {
+                    .hero-heading { font-size: 2rem !important; }
+                    .hero-sub { font-size: 1rem !important; }
+                }
+                .hero-row { margin-top: -10rem; }
+                @media (max-width: 991px) { .hero-row { margin-top: 0; } }
+                @media (max-width: 575px)  { .hero-row { margin-top: 0; } }
 
                 /* ── Why Choose Us: center heading/subtext only on mobile ── */
                 @media (max-width: 991px) {
@@ -152,17 +167,16 @@ const Landing = () => {
             </div>
 
             {/* Hero */}
-            <section style={{
+            <section className="hero-section" style={{
                 backgroundImage: 'url(' + heroBackground + ')',
-                backgroundSize: 'cover', backgroundPosition: 'center 30%',
                 backgroundRepeat: 'no-repeat', backgroundAttachment: 'scroll',
                 position: 'relative', minHeight: '100svh', height: '100vh',
                 width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
             }}>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom right, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 60%, transparent 100%)', zIndex: 1 }} />
-                <div className="container py-5 py-lg-0" style={{ position: 'relative', zIndex: 2, paddingTop: '120px' }}>
-                    <div className="row align-items-center hero-row" style={{ minHeight: '50vh', marginTop: '-12rem' }}>
-                        <div className="col-lg-6 text-center text-lg-start">
+                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+                    <div className="row align-items-center hero-row">
+                        <div className="col-lg-6 text-center text-lg-start hero-content">
                             <p className="hero-tagline text-uppercase fw-semibold mb-3" style={{ letterSpacing: '2px', color: '#fdb813' }}>Now Live in Your City</p>
                             <h1 className="hero-heading display-3 fw-bold mb-4" style={{ color: '#0a1a3f', lineHeight: '1.1' }}>
                                 Your package,<br />
@@ -172,9 +186,9 @@ const Landing = () => {
                             <p className="hero-para mb-4 fw-bold" style={{ color: '#0a1a3f', maxWidth: '480px' }}>
                                 Experience the new standard in logistics. Place an order in seconds, track it live, and relax while we handle the rest.
                             </p>
-                            <div className="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
-                                <Link to="/register" className="btn btn-lg px-4 fw-semibold" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f' }}>Get Started →</Link>
-                                <Link to="/track" className="btn btn-outline-dark btn-lg px-4 fw-semibold">Track Order</Link>
+                            <div className="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start" style={{ alignItems: 'center' }}>
+                                <Link to="/register" className="btn btn-lg px-4 fw-semibold" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}>Get Started →</Link>
+                                <Link to="/track" className="btn btn-outline-dark btn-lg px-4 fw-semibold" style={{ width: 'auto' }}>Track Order</Link>
                             </div>
                         </div>
                     </div>
@@ -229,7 +243,7 @@ const Landing = () => {
                             <p className="text-uppercase text-secondary mb-3 fw-semibold" style={{ letterSpacing: '2px' }}>Why Choose Us</p>
                             <h2 className="display-5 fw-bold mb-4" style={{ color: '#0a1a3f' }}>Built for speed, designed for trust.</h2>
                             <p className="text-secondary mb-4">We've reimagined logistics to be transparent and reliable. From real-time GPS tracking to verified drivers, we give you complete peace of mind.</p>
-                            <Link to="/register" className="btn btn-primary btn-lg px-4 mb-4" style={{ backgroundColor: '#0a1a3f', borderColor: '#0a1a3f' }}>Get Started Free →</Link>
+                            <Link to="/register" className="btn btn-primary btn-lg px-4 mb-4" style={{ backgroundColor: '#0a1a3f', borderColor: '#0a1a3f', width: 'auto', display: 'inline-block' }}>Get Started Free →</Link>
                             {features.map((f, i) => (
                                 <div className={'d-flex mb-4 wcu-feature' + (whyChooseUsInView ? ' visible' : '')} key={i}>
                                     <div className="me-3 p-3 rounded-3" style={{ backgroundColor: '#fff', boxShadow: '0 4px 16px rgba(10,26,63,0.08)', color: '#0a1a3f', flexShrink: 0 }}>{f.icon}</div>
