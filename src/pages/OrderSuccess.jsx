@@ -97,11 +97,11 @@ const OrderSuccess = () => {
                                 {/* Order summary */}
                                 <div className="text-start mb-4">
                                     <div className="d-flex justify-content-between py-2 border-bottom">
-                                        <span className="text-muted small">Pickup</span>
+                                        <span className="text-muted small">Pickup: </span>
                                         <span className="small fw-semibold">{order.pickupAddress?.street}, {order.pickupAddress?.city}</span>
                                     </div>
                                     <div className="d-flex justify-content-between py-2 border-bottom">
-                                        <span className="text-muted small">Delivery</span>
+                                        <span className="text-muted small">Delivery: </span>
                                         <span className="small fw-semibold">{order.deliveryAddress?.street}, {order.deliveryAddress?.city}</span>
                                     </div>
                                     <div className="d-flex justify-content-between py-2 border-bottom">

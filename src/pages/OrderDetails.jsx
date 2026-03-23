@@ -309,7 +309,7 @@ const OrderDetails = () => {
                             </div>
                         )}
 
-                        {/* Action buttons */}
+                        
                         <div className="d-flex flex-column gap-2">
                             {order.status === 'delivered' && (
                                 <button className="btn fw-bold d-flex align-items-center justify-content-center gap-2"
@@ -338,7 +338,7 @@ const OrderDetails = () => {
                 </div>
             </div>
 
-            {/* Cancel Modal */}
+            
             <div className="modal fade" id="cancelModal" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content border-0" style={{ borderRadius: 16 }}>
@@ -360,7 +360,7 @@ const OrderDetails = () => {
                 </div>
             </div>
 
-            {/* Delete Modal */}
+            
             <div className="modal fade" id="deleteModal" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content border-0" style={{ borderRadius: 16 }}>
@@ -382,7 +382,7 @@ const OrderDetails = () => {
                 </div>
             </div>
 
-            {/* Lightbox */}
+            
             {lightboxImg && (
                 <div onClick={() => setLightboxImg(null)}
                     style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, cursor: 'zoom-out' }}>
