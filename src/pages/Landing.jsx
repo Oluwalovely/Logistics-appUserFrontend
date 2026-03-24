@@ -142,6 +142,9 @@ const Landing = () => {
                                 <span className="fw-bold text-white fs-6">LOVELISTICS</span>
                             </Link>
                             <div className="d-none d-lg-flex align-items-center gap-4">
+                                <Link to="/about" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>About</Link>
+                                <Link to="/services" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Services</Link>
+                                <a href={DRIVER_APP_URL + '/register'} target="_blank" rel="noopener noreferrer" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Drive for Us</a>
                                 <Link to="/login" className="text-decoration-none px-3 py-1" style={{ color: '#ffffff', fontSize: '0.95rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '20px' }}>Sign In</Link>
                                 <Link to="/register" className="text-decoration-none px-3 py-1" style={{ backgroundColor: '#fdb813', color: '#0a1a3f', fontSize: '0.95rem', borderRadius: '20px', border: '1px solid #fdb813', fontWeight: '500' }}>Sign Up</Link>
                             </div>
@@ -156,9 +159,13 @@ const Landing = () => {
                         </div>
                         {menuOpen && (
                             <div className="d-lg-none mt-3 pb-2">
-                                <div className="d-flex flex-column align-items-center gap-2">
-                                    <Link to="/login" className="text-decoration-none py-1" style={{ color: '#ffffff' }}>Sign In</Link>
-                                    <Link to="/register" className="text-decoration-none py-1" style={{ color: '#fdb813' }}>Sign Up</Link>
+                                <div className="d-flex flex-column align-items-center gap-3">
+                                    <Link to="/about" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)' }} onClick={() => setMenuOpen(false)}>About</Link>
+                                    <Link to="/services" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)' }} onClick={() => setMenuOpen(false)}>Services</Link>
+                                    <a href={DRIVER_APP_URL + '/register'} target="_blank" rel="noopener noreferrer" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)' }} onClick={() => setMenuOpen(false)}>Drive for Us</a>
+                                    <div style={{ width: '80%', height: '1px', background: 'rgba(255,255,255,0.15)' }} />
+                                    <Link to="/login" className="text-decoration-none px-4 py-1 fw-semibold" style={{ color: '#ffffff', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '20px' }} onClick={() => setMenuOpen(false)}>Sign In</Link>
+                                    <Link to="/register" className="text-decoration-none px-4 py-1 fw-semibold" style={{ backgroundColor: '#fdb813', color: '#0a1a3f', borderRadius: '20px' }} onClick={() => setMenuOpen(false)}>Sign Up</Link>
                                 </div>
                             </div>
                         )}

@@ -10,7 +10,7 @@ const OrderSuccess = () => {
     const [copied, setCopied] = useState(false);
     const [countdown, setCountdown] = useState(10);
 
-    // Redirect to order details after 10 seconds
+    
     useEffect(() => {
         if (!order) {
             navigate('/dashboard');
@@ -43,7 +43,7 @@ const OrderSuccess = () => {
                 <div className="row justify-content-center">
                     <div className="col-md-6">
 
-                        {/* Success card */}
+                        
                         <div className="card border-0 shadow-sm text-center" style={{ borderRadius: 20, overflow: 'hidden' }}>
 
                             {/* Green top strip */}
