@@ -14,7 +14,7 @@ import whyChooseUs from '../assets/why-choose-us.png';
 const DRIVER_APP_URL = import.meta.env.VITE_DRIVER_APP_URL || 'http://localhost:5174';
 
 const features = [
-    { icon: <MapPin size={24} />, title: 'Live GPS Tracking', desc: 'Watch your driver move on the map in real-time, updated every 3 seconds.' },
+    { icon: <MapPin size={24} />, title: 'GPS Tracking', desc: 'Watch your driver on the map, updated every 3 seconds.' },
     { icon: <Bell size={24} />, title: 'Smart Notifications', desc: 'Get instant alerts at every step: assigned, picked up, and delivered.' },
     { icon: <ShieldCheck size={24} />, title: 'Secure Delivery', desc: 'Nothing is marked delivered without your personal confirmation code.' },
     { icon: <CircleDollarSign size={24} />, title: 'Transparent Pricing', desc: 'See your exact fee upfront. No hidden charges or surprises.' },
@@ -269,7 +269,7 @@ const Landing = () => {
                         <div className={'col-lg-5 wcu-left' + (whyChooseUsInView ? ' visible' : '')}>
                             <p className="text-uppercase text-secondary mb-3 fw-semibold" style={{ letterSpacing: '2px' }}>Why Choose Us</p>
                             <h2 className="display-5 fw-bold mb-4" style={{ color: '#0a1a3f' }}>Built for speed, designed for trust.</h2>
-                            <p className="text-secondary mb-4">We've reimagined logistics to be transparent and reliable. From real-time GPS tracking to verified drivers, we give you complete peace of mind.</p>
+                            <p className="text-secondary mb-4">We've reimagined logistics to be transparent and reliable. From GPS tracking to verified drivers, we give you complete peace of mind.</p>
                             <Link to="/register" className="btn btn-primary btn-lg px-4 mb-4" style={{ backgroundColor: '#0a1a3f', borderColor: '#0a1a3f', width: 'auto', display: 'inline-block' }}>Get Started Free →</Link>
                             {features.map((f, i) => (
                                 <div className={'d-flex mb-4 wcu-feature' + (whyChooseUsInView ? ' visible' : '')} key={i}>
