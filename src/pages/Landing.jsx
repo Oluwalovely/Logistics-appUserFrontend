@@ -20,12 +20,6 @@ const features = [
     { icon: <CircleDollarSign size={24} />, title: 'Transparent Pricing', desc: 'See your exact fee upfront. No hidden charges or surprises.' },
 ];
 
-const stats = [
-    { icon: <Truck size={20} />, value: '500+', label: 'Deliveries Made' },
-    { icon: <Users size={20} />, value: '200+', label: 'Happy Customers' },
-    { icon: <Star size={20} />, value: '4.9★', label: 'Average Rating' },
-    { icon: <CheckCircle size={20} />, value: '98%', label: 'On-Time Rate' },
-];
 
 const marqueeItems = [
     'Fast Delivery', 'Live Tracking', 'Real-time Alerts', 'Safe & Secure',
@@ -141,7 +135,7 @@ const Landing = () => {
 
             <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', paddingTop: '100px' }} />
 
-            {/* ── Navbar ─────────────────────────────────────────────────── */}
+            {/*Navbar*/}
             <div style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 1050, width: '90%', maxWidth: '1320px' }}>
                 <nav className="shadow-lg py-2" style={{ backgroundColor: 'rgba(10,26,63,0.9)', borderRadius: '30px', width: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
                     <div className="container-fluid px-4">
@@ -181,7 +175,7 @@ const Landing = () => {
                 </nav>
             </div>
 
-            {/* ── Hero ───────────────────────────────────────────────────── */}
+            {/*Hero*/}
             <section className="hero-section" style={{
                 backgroundImage: 'url(' + heroBackground + ')',
                 backgroundRepeat: 'no-repeat', backgroundAttachment: 'scroll',
@@ -193,7 +187,7 @@ const Landing = () => {
                     <div className="row align-items-center hero-row">
                         <div className="col-lg-6 text-center text-lg-start hero-content">
 
-                            {/* ── What is Lovelistics — product definition pill ── */}
+                            
                             <div className="hero-badge mb-3 d-flex justify-content-center justify-content-lg-start">
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(10,26,63,0.08)', border: '1px solid rgba(10,26,63,0.15)', borderRadius: '999px', padding: '0.35rem 1rem', fontSize: '0.8rem', fontWeight: 700, color: '#0a1a3f', letterSpacing: '0.3px' }}>
                                     <span className="live-dot" /> Nigeria's On-Demand Delivery Platform
@@ -219,7 +213,7 @@ const Landing = () => {
                             <div className="hero-trust d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
                                 <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><ShieldCheck size={13} /> Verified Drivers Only</span>
                                 <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><CheckCircle size={13} /> No hidden charges</span>
-                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><MapPin size={13} /> Live GPS tracking</span>
+                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><MapPin size={13} />GPS tracking</span>
                             </div>
 
                         </div>
@@ -227,7 +221,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* ── Marquee ────────────────────────────────────────────────── */}
+            {/*Marquee*/}
             <div style={{ backgroundColor: '#fdb813', padding: '0.6rem 0', overflow: 'hidden' }}>
                 <div style={{ display: 'flex', animation: 'marqueeScroll 22s linear infinite', whiteSpace: 'nowrap', width: 'max-content' }}>
                     {[...marqueeItems, ...marqueeItems].map((item, i) => (
@@ -239,24 +233,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            {/* ── Stats Bar ──────────────────────────────────────────────── */}
-            <section className="py-4" style={{ backgroundColor: '#fff', borderBottom: '1px solid #eef0f5' }}>
-                <div className="container">
-                    <div ref={statsRef} className="row g-3 justify-content-center text-center">
-                        {stats.map((s, i) => (
-                            <div key={i} className={'col-6 col-md-3 stat-card' + (statsInView ? ' visible' : '')}>
-                                <div className="p-3 rounded-3" style={{ background: '#f8f9fc' }}>
-                                    <div className="mb-1 d-flex justify-content-center" style={{ color: '#0a1a3f' }}>{s.icon}</div>
-                                    <div className="fw-bold fs-4" style={{ color: '#0a1a3f' }}>{s.value}</div>
-                                    <div className="text-secondary small">{s.label}</div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── How It Works ───────────────────────────────────────────── */}
+            {/*How It Works*/}
             <section className="d-flex align-items-center py-5">
                 <div className="container text-center">
                     <p className="text-uppercase text-secondary mb-3 fw-semibold" style={{ letterSpacing: '2px' }}>How It Works</p>
@@ -266,7 +243,7 @@ const Landing = () => {
                         {[
                             { num: '01', img: createOrder,    imgAlt: 'Person creating a delivery order on a phone', title: 'Place Request',  desc: 'Enter pickup & drop-off details. Get an instant quote and confirm your order in seconds.' },
                             { num: '02', img: driverAssigned, imgAlt: 'Courier receiving a delivery assignment',     title: 'Driver Assigned', desc: 'Our smart system assigns the nearest verified driver. You get their details instantly.' },
-                            { num: '03', img: trackingApp,    imgAlt: 'Live tracking app on a phone',               title: 'Live Tracking',   desc: 'Watch your package move on the map. Get notified when it arrives safely.' },
+                            { num: '03', img: trackingApp,    imgAlt: 'Live tracking app on a phone',               title: 'GPS Tracking',   desc: 'Watch your package move on the map. Get notified when it arrives safely.' },
                         ].map((step) => (
                             <div key={step.num} className={'col-md-4 hiw-card' + (howItWorksInView ? ' visible' : '')}>
                                 <div className="card h-100 border-0 bg-light position-relative overflow-hidden" style={{ borderRadius: '16px', textAlign: 'left' }}>
@@ -285,7 +262,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* ── Why Choose Us ──────────────────────────────────────────── */}
+            {/*Why Choose Us*/}
             <section className="py-5" style={{ backgroundColor: '#f8f9fa' }} ref={whyChooseUsRef}>
                 <div className="container">
                     <div className="row align-items-center g-5">
@@ -313,7 +290,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* ── Track Your Order ───────────────────────────────────────── */}
+            {/*Track Your Order*/}
             <section className="py-5" style={{
                 backgroundImage: 'url(' + trackingBg + ')',
                 backgroundSize: 'cover', backgroundPosition: 'center',
@@ -379,7 +356,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* ── CTA ────────────────────────────────────────────────────── */}
+            {/*CTA*/}
             <section ref={ctaRef} className={'cta-section py-4' + (ctaInView ? ' visible' : '')} style={{ backgroundColor: '#f3f4f5' }}>
                 <div className="container text-center py-lg-5">
                     <p className="text-uppercase mb-3 fw-semibold" style={{ letterSpacing: '2px', color: '#fdb813' }}>Start Now</p>
@@ -402,7 +379,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* ── Footer ─────────────────────────────────────────────────── */}
+            {/*Footer*/}
             <footer className="py-4" style={{ backgroundColor: '#05102e', color: '#fff' }}>
                 <div className="container">
                     <div className="row g-4">
