@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search } from 'lucide-react';
+import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search, Truck, Star, Users, CheckCircle } from 'lucide-react';
 import logo from '../assets/logo.png';
 import heroBackground from '../assets/hero-bg.png';
 import trackingApp from '../assets/tracking-app.png';
@@ -20,6 +20,13 @@ const features = [
     { icon: <CircleDollarSign size={24} />, title: 'Transparent Pricing', desc: 'See your exact fee upfront. No hidden charges or surprises.' },
 ];
 
+const stats = [
+    { icon: <Truck size={20} />, value: '500+', label: 'Deliveries Made' },
+    { icon: <Users size={20} />, value: '200+', label: 'Happy Customers' },
+    { icon: <Star size={20} />, value: '4.9★', label: 'Average Rating' },
+    { icon: <CheckCircle size={20} />, value: '98%', label: 'On-Time Rate' },
+];
+
 const marqueeItems = [
     'Fast Delivery', 'Live Tracking', 'Real-time Alerts', 'Safe & Secure',
     'Easy Ordering', 'Verified Drivers', 'Fast Delivery', 'Live Tracking',
@@ -31,10 +38,7 @@ const useInView = (options = {}) => {
     const [inView, setInView] = useState(false);
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setInView(true);
-                observer.disconnect();
-            }
+            if (entry.isIntersecting) { setInView(true); observer.disconnect(); }
         }, { threshold: 0.15, ...options });
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
@@ -49,13 +53,12 @@ const Landing = () => {
     const [howItWorksRef, howItWorksInView] = useInView();
     const [whyChooseUsRef, whyChooseUsInView] = useInView();
     const [ctaRef, ctaInView] = useInView();
+    const [statsRef, statsInView] = useInView();
 
     const formik = useFormik({
         initialValues: { trackingNumber: '' },
         validationSchema: Yup.object({
-            trackingNumber: Yup.string()
-                .trim()
-                .required('Please enter a tracking number to continue.'),
+            trackingNumber: Yup.string().trim().required('Please enter a tracking number to continue.'),
         }),
         onSubmit: (values) => {
             navigate('/track/' + values.trackingNumber.trim());
@@ -71,12 +74,15 @@ const Landing = () => {
                     to   { opacity: 1; transform: translateY(0); }
                 }
                 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+                @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
 
-                .hero-tagline  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.1s; }
-                .hero-heading  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.3s; }
-                .hero-sub      { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.5s; }
-                .hero-para     { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.65s; }
-                .hero-buttons  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.8s; }
+                .hero-badge    { animation: fadeSlideUp 0.6s ease both; animation-delay: 0s; }
+                .hero-tagline  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.15s; }
+                .hero-heading  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.35s; }
+                .hero-sub      { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.55s; }
+                .hero-para     { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.7s; }
+                .hero-buttons  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.85s; }
+                .hero-trust    { animation: fadeSlideUp 0.7s ease both; animation-delay: 1s; }
 
                 .hiw-card { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
                 .hiw-card.visible { opacity: 1; transform: translateY(0); }
@@ -84,29 +90,32 @@ const Landing = () => {
                 .hiw-card:nth-child(2) { transition-delay: 0.15s; }
                 .hiw-card:nth-child(3) { transition-delay: 0.3s; }
 
+                .stat-card { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+                .stat-card.visible { opacity: 1; transform: translateY(0); }
+                .stat-card:nth-child(1) { transition-delay: 0s; }
+                .stat-card:nth-child(2) { transition-delay: 0.1s; }
+                .stat-card:nth-child(3) { transition-delay: 0.2s; }
+                .stat-card:nth-child(4) { transition-delay: 0.3s; }
+
                 .wcu-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
                 .wcu-left.visible { opacity: 1; transform: translateX(0); }
-
                 .wcu-feature { opacity: 0; transform: translateX(-24px); transition: opacity 0.5s ease, transform 0.5s ease; }
                 .wcu-feature.visible { opacity: 1; transform: translateX(0); }
                 .wcu-feature:nth-child(1) { transition-delay: 0.1s; }
                 .wcu-feature:nth-child(2) { transition-delay: 0.25s; }
                 .wcu-feature:nth-child(3) { transition-delay: 0.4s; }
                 .wcu-feature:nth-child(4) { transition-delay: 0.55s; }
-
                 .wcu-img { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s; }
                 .wcu-img.visible { opacity: 1; transform: translateX(0); }
 
                 .cta-section { opacity: 0; transform: scale(0.97); transition: opacity 0.7s ease, transform 0.7s ease; }
                 .cta-section.visible { opacity: 1; transform: scale(1); }
 
-                /* ── Hero background: adjust focal point on mobile ── */
-                .hero-section { background-size: cover; background-position: center 30%; }
-                @media (max-width: 767px) {
-                    .hero-section { background-position: 70% center; }
-                }
+                .live-dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulseDot 1.5s ease-in-out infinite; }
 
-                /* ── Hero text: tablet + mobile tweaks ── */
+                .hero-section { background-size: cover; background-position: center 30%; }
+                @media (max-width: 767px) { .hero-section { background-position: 70% center; } }
+
                 @media (max-width: 991px) {
                     .hero-content { text-align: center !important; }
                     .hero-content .hero-para { max-width: 100% !important; margin-left: auto; margin-right: auto; }
@@ -120,19 +129,19 @@ const Landing = () => {
                 @media (max-width: 991px) { .hero-row { margin-top: 0; } }
                 @media (max-width: 575px)  { .hero-row { margin-top: 0; } }
 
-                /* ── Why Choose Us: center heading/subtext only on mobile ── */
                 @media (max-width: 991px) {
                     .wcu-left { text-align: center; }
-                    .wcu-left > p,
-                    .wcu-left > h2,
-                    .wcu-left > .text-secondary,
-                    .wcu-left > a { display: block; text-align: center; }
+                    .wcu-left > p, .wcu-left > h2, .wcu-left > .text-secondary, .wcu-left > a { display: block; text-align: center; }
                 }
+
+                .trust-pill { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.78rem; color: #fff; font-weight: 600; }
 
                 footer a:hover { color: #fdb813 !important; opacity: 1 !important; transition: color 0.15s; }
             `}</style>
 
             <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', paddingTop: '100px' }} />
+
+            {/* ── Navbar ─────────────────────────────────────────────────── */}
             <div style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 1050, width: '90%', maxWidth: '1320px' }}>
                 <nav className="shadow-lg py-2" style={{ backgroundColor: 'rgba(10,26,63,0.9)', borderRadius: '30px', width: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
                     <div className="container-fluid px-4">
@@ -152,8 +161,7 @@ const Landing = () => {
                                 style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
                                 onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
                                 onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
-                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                            >
+                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                                 <span className="navbar-toggler-icon" style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")" }}></span>
                             </button>
                         </div>
@@ -173,7 +181,7 @@ const Landing = () => {
                 </nav>
             </div>
 
-            {/* Hero */}
+            {/* ── Hero ───────────────────────────────────────────────────── */}
             <section className="hero-section" style={{
                 backgroundImage: 'url(' + heroBackground + ')',
                 backgroundRepeat: 'no-repeat', backgroundAttachment: 'scroll',
@@ -184,6 +192,14 @@ const Landing = () => {
                 <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                     <div className="row align-items-center hero-row">
                         <div className="col-lg-6 text-center text-lg-start hero-content">
+
+                            {/* ── What is Lovelistics — product definition pill ── */}
+                            <div className="hero-badge mb-3 d-flex justify-content-center justify-content-lg-start">
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(10,26,63,0.08)', border: '1px solid rgba(10,26,63,0.15)', borderRadius: '999px', padding: '0.35rem 1rem', fontSize: '0.8rem', fontWeight: 700, color: '#0a1a3f', letterSpacing: '0.3px' }}>
+                                    <span className="live-dot" /> Nigeria's On-Demand Delivery Platform
+                                </span>
+                            </div>
+
                             <p className="hero-tagline text-uppercase fw-semibold mb-3" style={{ letterSpacing: '2px', color: '#fdb813' }}>Now Live in Your City</p>
                             <h1 className="hero-heading display-3 fw-bold mb-4" style={{ color: '#0a1a3f', lineHeight: '1.1' }}>
                                 Your package,<br />
@@ -191,18 +207,27 @@ const Landing = () => {
                             </h1>
                             <p className="hero-sub lead fw-bold mb-2" style={{ color: '#0a1a3f' }}>Delivering Trust, On Time. Every Time.</p>
                             <p className="hero-para mb-4 fw-bold" style={{ color: '#0a1a3f', maxWidth: '480px' }}>
-                                Experience the new standard in logistics. Place an order in seconds, track it live, and relax while we handle the rest.
+                                Send parcels, documents, and packages across the city in minutes. Place an order in seconds, track it live, and relax while we handle the rest.
                             </p>
-                            <div className="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start" style={{ alignItems: 'center' }}>
-                                <Link to="/register" className="btn btn-lg px-4 fw-semibold" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}>Get Started →</Link>
-                                <Link to="/track" className="btn btn-outline-dark btn-lg px-4 fw-semibold" style={{ width: 'auto' }}>Track Order</Link>
+
+                            <div className="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start mb-4" style={{ alignItems: 'center' }}>
+                                <Link to="/register" className="btn btn-lg px-4 fw-semibold" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}>Get Started Free →</Link>
+                                <Link to="/track" className="btn btn-outline-dark btn-lg px-4 fw-semibold" style={{ width: 'auto' }}>Track a Package</Link>
                             </div>
+
+                            {/* ── Trust signals ── */}
+                            <div className="hero-trust d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><ShieldCheck size={13} /> Verified Drivers Only</span>
+                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><CheckCircle size={13} /> No hidden charges</span>
+                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><MapPin size={13} /> Live GPS tracking</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Marquee */}
+            {/* ── Marquee ────────────────────────────────────────────────── */}
             <div style={{ backgroundColor: '#fdb813', padding: '0.6rem 0', overflow: 'hidden' }}>
                 <div style={{ display: 'flex', animation: 'marqueeScroll 22s linear infinite', whiteSpace: 'nowrap', width: 'max-content' }}>
                     {[...marqueeItems, ...marqueeItems].map((item, i) => (
@@ -214,11 +239,29 @@ const Landing = () => {
                 </div>
             </div>
 
-            {/* How It Works */}
+            {/* ── Stats Bar ──────────────────────────────────────────────── */}
+            <section className="py-4" style={{ backgroundColor: '#fff', borderBottom: '1px solid #eef0f5' }}>
+                <div className="container">
+                    <div ref={statsRef} className="row g-3 justify-content-center text-center">
+                        {stats.map((s, i) => (
+                            <div key={i} className={'col-6 col-md-3 stat-card' + (statsInView ? ' visible' : '')}>
+                                <div className="p-3 rounded-3" style={{ background: '#f8f9fc' }}>
+                                    <div className="mb-1 d-flex justify-content-center" style={{ color: '#0a1a3f' }}>{s.icon}</div>
+                                    <div className="fw-bold fs-4" style={{ color: '#0a1a3f' }}>{s.value}</div>
+                                    <div className="text-secondary small">{s.label}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── How It Works ───────────────────────────────────────────── */}
             <section className="d-flex align-items-center py-5">
                 <div className="container text-center">
                     <p className="text-uppercase text-secondary mb-3 fw-semibold" style={{ letterSpacing: '2px' }}>How It Works</p>
-                    <h2 className="display-5 fw-bold mb-5" style={{ color: '#0a1a3f' }}>Delivery in 3 simple steps</h2>
+                    <h2 className="display-5 fw-bold mb-2" style={{ color: '#0a1a3f' }}>Delivery in 3 simple steps</h2>
+                    <p className="text-secondary mb-5" style={{ maxWidth: 500, margin: '0 auto 2.5rem' }}>No experience needed. If you can fill a form, you can place a delivery order.</p>
                     <div ref={howItWorksRef} className="row g-4">
                         {[
                             { num: '01', img: createOrder,    imgAlt: 'Person creating a delivery order on a phone', title: 'Place Request',  desc: 'Enter pickup & drop-off details. Get an instant quote and confirm your order in seconds.' },
@@ -242,7 +285,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Why Choose Us */}
+            {/* ── Why Choose Us ──────────────────────────────────────────── */}
             <section className="py-5" style={{ backgroundColor: '#f8f9fa' }} ref={whyChooseUsRef}>
                 <div className="container">
                     <div className="row align-items-center g-5">
@@ -270,7 +313,7 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Track Your Order */}
+            {/* ── Track Your Order ───────────────────────────────────────── */}
             <section className="py-5" style={{
                 backgroundImage: 'url(' + trackingBg + ')',
                 backgroundSize: 'cover', backgroundPosition: 'center',
@@ -282,7 +325,11 @@ const Landing = () => {
                         <div className="col-lg-7">
                             <p className="text-uppercase fw-semibold mb-2" style={{ letterSpacing: '2px', color: '#fdb813', fontSize: '0.8rem' }}>Real-Time Updates</p>
                             <h2 className="display-5 fw-bold text-white mb-3">Track Your Package</h2>
-                            <p style={{ color: 'rgba(255,255,255,0.7)' }}>Enter your tracking number below to get an instant update on your delivery status. No login required.</p>
+                            <p style={{ color: 'rgba(255,255,255,0.7)' }}>Enter your tracking number below to get an instant update on your delivery status.</p>
+                            {/* ── No login required nudge ── */}
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(253,184,19,0.15)', border: '1px solid rgba(253,184,19,0.3)', borderRadius: '999px', padding: '0.3rem 1rem', fontSize: '0.78rem', color: '#fdb813', fontWeight: 600 }}>
+                                <CheckCircle size={13} /> No login required
+                            </span>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -323,12 +370,16 @@ const Landing = () => {
                                     </p>
                                 )}
                             </form>
+                            {/* ── Privacy notice ── */}
+                            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.85rem', marginBottom: 0 }}>
+                                🔒 Your tracking data is private and never shared with third parties.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* CTA */}
+            {/* ── CTA ────────────────────────────────────────────────────── */}
             <section ref={ctaRef} className={'cta-section py-4' + (ctaInView ? ' visible' : '')} style={{ backgroundColor: '#f3f4f5' }}>
                 <div className="container text-center py-lg-5">
                     <p className="text-uppercase mb-3 fw-semibold" style={{ letterSpacing: '2px', color: '#fdb813' }}>Start Now</p>
@@ -336,13 +387,22 @@ const Landing = () => {
                     <p className="lead mb-4" style={{ maxWidth: '700px', margin: '0 auto 2rem auto', opacity: 0.9, color: '#05102e' }}>
                         Join thousands of happy customers using LOVELISTICS. Fast, secure, and affordable delivery at your fingertips.
                     </p>
-                    <Link to="/register" className="btn btn-warning fw-semibold btn-lg" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f' }}>
-                        Create Free Account →
-                    </Link>
+                    <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center align-items-center">
+                        <Link to="/register" className="btn btn-warning fw-semibold btn-lg" style={{ backgroundColor: '#fdb813', borderColor: '#fdb813', color: '#0a1a3f' }}>
+                            Create Free Account →
+                        </Link>
+                        <Link to="/track" className="btn btn-outline-dark btn-lg fw-semibold">
+                            Track a Package
+                        </Link>
+                    </div>
+                    {/* ── Bottom trust line ── */}
+                    <p className="mt-4 mb-0" style={{ fontSize: '0.82rem', color: '#6b7a99' }}>
+                        ✓ Free to sign up &nbsp;·&nbsp; ✓ No subscription fees &nbsp;·&nbsp; ✓ Cancel anytime
+                    </p>
                 </div>
             </section>
 
-            {/* Footer */}
+            {/* ── Footer ─────────────────────────────────────────────────── */}
             <footer className="py-4" style={{ backgroundColor: '#05102e', color: '#fff' }}>
                 <div className="container">
                     <div className="row g-4">
@@ -352,6 +412,8 @@ const Landing = () => {
                                 <span className="fw-bold fs-4">LOVELISTICS</span>
                             </div>
                             <p style={{ opacity: 0.7 }}>Reliable, fast, and secure logistics for modern businesses and individuals. We deliver trust, every time.</p>
+                            {/* ── Privacy assurance in footer ── */}
+                            <p style={{ fontSize: '0.78rem', opacity: 0.5, marginBottom: 0 }}>🔒 Your data is never sold or shared with third parties.</p>
                         </div>
                         <div className="col-6 col-lg-2">
                             <h6 className="fw-bold mb-3">Company</h6>
