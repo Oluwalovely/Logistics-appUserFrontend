@@ -194,7 +194,6 @@ const Landing = () => {
                                 </span>
                             </div>
 
-                            <p className="hero-tagline text-uppercase fw-semibold mb-3" style={{ letterSpacing: '2px', color: '#fdb813' }}>Now Live in Your City</p>
                             <h1 className="hero-heading display-3 fw-bold mb-4" style={{ color: '#0a1a3f', lineHeight: '1.1' }}>
                                 Your package,<br />
                                 <span style={{ color: '#fdb813' }}>delivered fast with love.</span>
