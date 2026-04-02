@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const API = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:7001/api/v1',
 });
 
 API.interceptors.request.use((config) => {

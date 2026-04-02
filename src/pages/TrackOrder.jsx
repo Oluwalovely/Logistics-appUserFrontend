@@ -5,7 +5,7 @@ import { Package, MapPin, Search, CheckCircle, Truck, Clock, XCircle, Flag } fro
 import axios from 'axios';
 import logo from '../assets/logo.png';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:7001/api/v1';
 
 const statusConfig = {
     'pending': { color: '#f5a623', label: 'Pending', icon: <Clock size={18} />, step: 0 },

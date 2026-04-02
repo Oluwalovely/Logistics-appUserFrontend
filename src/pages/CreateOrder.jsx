@@ -101,7 +101,7 @@ const CreateOrder = () => {
 
                                 <form onSubmit={handleSubmit}>
 
-                                    {/* ── Sender Details ───────────────────────────── */}
+                                    {/*Sender Details*/}
                                     <div className="mb-4">
                                         <SectionHeader icon={<MapPin size={16} />} title="Sender & Pickup" />
                                         <div className="row g-2 mb-2">
@@ -168,7 +168,7 @@ const CreateOrder = () => {
                                         </div>
                                     </div>
 
-                                    {/* ── Receiver Details ─────────────────────────── */}
+                                    {/*Receiver Details*/}
                                     <div className="mb-4">
                                         <SectionHeader icon={<Flag size={16} />} title="Receiver & Delivery" />
                                         <div className="row g-2 mb-2">
@@ -235,7 +235,7 @@ const CreateOrder = () => {
                                         </div>
                                     </div>
 
-                                    {/* ── Package Details ───────────────────────────── */}
+                                    {/* Package Details */}
                                     <div className="mb-4">
                                         <SectionHeader icon={<Package size={16} />} title="Package Details" />
                                         <input
@@ -262,7 +262,7 @@ const CreateOrder = () => {
                                         <div className="form-text">Price is calculated based on weight.</div>
                                     </div>
 
-                                    {/* ── Image Upload ──────────────────────────────── */}
+                                    {/* Image Upload */}
                                     <div className="mb-4">
                                         <SectionHeader icon={<Camera size={16} />} title="Package Photos (optional, max 2)" />
 
