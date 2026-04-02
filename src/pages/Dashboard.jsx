@@ -173,6 +173,19 @@ const StatCard = ({ label, value, sub, icon, color }) => (
     </div>
 );
 
+const StatCardSkeleton = () => (
+    <div style={{ background: T.white, borderRadius: 16, padding: '1.25rem', border: `1px solid ${T.border}`, boxShadow: '0 1px 3px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div className="skel" style={{ width: 80, height: 10 }} />
+                <div className="skel" style={{ width: 50, height: 28 }} />
+            </div>
+            <div className="skel" style={{ width: 42, height: 42, borderRadius: 12 }} />
+        </div>
+        <div className="skel" style={{ width: '70%', height: 10 }} />
+    </div>
+);
+
 /*Progress Bar*/
 const ShipmentProgress = ({ status }) => {
     if (status === 'cancelled') return (
@@ -320,6 +333,11 @@ const Dashboard = () => {
                 @keyframes ddIn    { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
                 @keyframes modalIn { from{opacity:0;transform:scale(0.95)}     to{opacity:1;transform:scale(1)} }
                 @keyframes fadeUp  { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+                @keyframes shimmer {
+                    0% { background-position: -400px 0; }
+                    100% { background-position: 400px 0; }
+                }
+                .skel { border-radius: 6px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 400px 100%; animation: shimmer 1.4s ease infinite; }
                 .gig-sidebar  { display: flex !important; flex-direction: column; }
                 .gig-main     { margin-left: 255px; padding-top: 2rem; }
                 .mob-bar      { display: none !important; }
@@ -356,10 +374,16 @@ const Dashboard = () => {
 
                     {/* Stat cards */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '1rem', marginBottom: '1.75rem', animation: 'fadeUp 0.35s ease both', animationDelay: '0.05s' }}>
-                        <StatCard label="Total Orders" value={stats.total} sub={`${stats.total === 1 ? '1 order' : `${stats.total} orders`} created`} icon={<Package size={20} />} color={T.navy} />
-                        <StatCard label="Active" value={stats.active} sub={stats.active === 0 ? 'None in transit' : `${stats.active} currently moving`} icon={<Zap size={20} />} color="#2563eb" />
-                        <StatCard label="Delivered" value={stats.delivered} sub={stats.delivered === 0 ? 'No deliveries yet' : `${stats.delivered} completed`} icon={<CheckCircle size={20} />} color="#16a34a" />
-                        <StatCard label="Cancelled" value={stats.cancelled} sub={stats.cancelled === 0 ? 'None cancelled' : `${stats.cancelled} cancelled`} icon={<XCircle size={20} />} color="#dc2626" />
+                        {loading ? (
+                            Array(4).fill(0).map((_, i) => <StatCardSkeleton key={i} />)
+                        ) : (
+                            <>
+                                <StatCard label="Total Orders" value={stats.total} sub={`${stats.total === 1 ? '1 order' : `${stats.total} orders`} created`} icon={<Package size={20} />} color={T.navy} />
+                                <StatCard label="Active" value={stats.active} sub={stats.active === 0 ? 'None in transit' : `${stats.active} currently moving`} icon={<Zap size={20} />} color="#2563eb" />
+                                <StatCard label="Delivered" value={stats.delivered} sub={stats.delivered === 0 ? 'No deliveries yet' : `${stats.delivered} completed`} icon={<CheckCircle size={20} />} color="#16a34a" />
+                                <StatCard label="Cancelled" value={stats.cancelled} sub={stats.cancelled === 0 ? 'None cancelled' : `${stats.cancelled} cancelled`} icon={<XCircle size={20} />} color="#dc2626" />
+                            </>
+                        )}
                     </div>
 
                     {/* Action banner */}
