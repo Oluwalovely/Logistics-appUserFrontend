@@ -11,25 +11,25 @@ import {
 import logo from '../assets/logo.png';
 
 const T = {
-    navy:   '#0d1f4f',
-    navyL:  '#162660',
+    navy: '#0d1f4f',
+    navyL: '#162660',
     orange: '#e8610a',
-    white:  '#ffffff',
-    light:  '#f5f6f8',
-    dark:   '#111827',
-    muted:  '#6b7280',
+    white: '#ffffff',
+    light: '#f5f6f8',
+    dark: '#111827',
+    muted: '#6b7280',
     border: '#e5e7eb',
-    sidebar:'#0d1f4f',
+    sidebar: '#0d1f4f',
 };
 
 const statusMap = {
-    'pending':    { label: 'Pending',    bg: '#fffbeb', text: '#92400e', dot: '#f59e0b',  border: '#fde68a' },
-    'assigned':   { label: 'Assigned',   bg: '#eff6ff', text: '#1e40af', dot: '#3b82f6',  border: '#bfdbfe' },
-    'picked-up':  { label: 'Picked Up',  bg: '#f5f3ff', text: '#5b21b6', dot: '#8b5cf6',  border: '#ddd6fe' },
-    'in-transit': { label: 'In Transit', bg: '#fff7ed', text: '#9a3412', dot: '#e8610a',  border: '#fed7aa' },
-    'delivered':  { label: 'Delivered',  bg: '#f0fdf4', text: '#14532d', dot: '#16a34a',  border: '#bbf7d0' },
-    'confirmed':  { label: 'Confirmed',  bg: '#eff6ff', text: '#1e40af', dot: '#3b82f6',  border: '#bfdbfe' },
-    'cancelled':  { label: 'Cancelled',  bg: '#fef2f2', text: '#991b1b', dot: '#ef4444',  border: '#fecaca' },
+    'pending': { label: 'Pending', bg: '#fffbeb', text: '#92400e', dot: '#f59e0b', border: '#fde68a' },
+    'assigned': { label: 'Assigned', bg: '#eff6ff', text: '#1e40af', dot: '#3b82f6', border: '#bfdbfe' },
+    'picked-up': { label: 'Picked Up', bg: '#f5f3ff', text: '#5b21b6', dot: '#8b5cf6', border: '#ddd6fe' },
+    'in-transit': { label: 'In Transit', bg: '#fff7ed', text: '#9a3412', dot: '#e8610a', border: '#fed7aa' },
+    'delivered': { label: 'Delivered', bg: '#f0fdf4', text: '#14532d', dot: '#16a34a', border: '#bbf7d0' },
+    'confirmed': { label: 'Confirmed', bg: '#eff6ff', text: '#1e40af', dot: '#3b82f6', border: '#bfdbfe' },
+    'cancelled': { label: 'Cancelled', bg: '#fef2f2', text: '#991b1b', dot: '#ef4444', border: '#fecaca' },
 };
 
 /* progress steps order */
@@ -41,17 +41,17 @@ const getProgressIndex = status => {
     return progressSteps.indexOf(status);
 };
 
-/* ── Avatar ──────────────────────────────────────── */
+/*Avatar*/
 const Avatar = ({ user, size = 32, fontSize = '0.82rem' }) => (
     user?.avatar
         ? <img src={user.avatar} alt="avatar"
             style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid rgba(255,255,255,0.2)' }} />
         : <div style={{ width: size, height: size, borderRadius: '50%', background: T.orange, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize, color: '#fff', flexShrink: 0 }}>
             {user?.fullName?.charAt(0).toUpperCase()}
-          </div>
+        </div>
 );
 
-/* ── Logout Modal ────────────────────────────────── */
+/*Logout Modal*/
 const LogoutModal = ({ onConfirm, onCancel }) => (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
         <div className="logout-modal" style={{ background: T.white, borderRadius: 16, padding: '1.5rem', maxWidth: 340, width: '100%', textAlign: 'center', boxShadow: '0 16px 48px rgba(0,0,0,0.18)', animation: 'modalIn 0.2s ease' }}>
@@ -68,7 +68,7 @@ const LogoutModal = ({ onConfirm, onCancel }) => (
     </div>
 );
 
-/* ── Mobile Bar ──────────────────────────────────── */
+/*Mobile Bar*/
 const MobileBar = ({ onMenuOpen, unreadCount }) => (
     <header className="mob-bar" style={{ background: T.white, borderBottom: `1px solid ${T.border}`, height: 56, display: 'flex', alignItems: 'center', padding: '0 1rem', gap: '0.75rem', position: 'sticky', top: 0, zIndex: 200 }}>
         <button onClick={onMenuOpen} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex' }}>
@@ -84,12 +84,12 @@ const MobileBar = ({ onMenuOpen, unreadCount }) => (
     </header>
 );
 
-/* ── Sidebar ─────────────────────────────────────── */
+/*Sidebar*/
 const sidebarLinks = [
-    { label: 'My Orders',     icon: <Package size={18} />,    to: '/dashboard',     key: 'orders' },
-    { label: 'Create Order',   icon: <PlusCircle size={18} />, to: '/create-order',  key: 'new' },
-    { label: 'Notifications', icon: <Bell size={18} />,       to: '/notifications', key: 'notif' },
-    { label: 'My Profile',    icon: <User size={18} />,       to: '/profile',       key: 'profile' },
+    { label: 'My Orders', icon: <Package size={18} />, to: '/dashboard', key: 'orders' },
+    { label: 'Create Order', icon: <PlusCircle size={18} />, to: '/create-order', key: 'new' },
+    { label: 'Notifications', icon: <Bell size={18} />, to: '/notifications', key: 'notif' },
+    { label: 'My Profile', icon: <User size={18} />, to: '/profile', key: 'profile' },
 ];
 
 const Sidebar = ({ open, onClose, onLogoutRequest, user, unreadCount }) => {
@@ -155,7 +155,7 @@ const Sidebar = ({ open, onClose, onLogoutRequest, user, unreadCount }) => {
     );
 };
 
-/* ── Stat Card ───────────────────────────────────── */
+/*Stat Card*/
 const StatCard = ({ label, value, sub, icon, color }) => (
     <div style={{ background: T.white, borderRadius: 16, padding: '1.25rem 1.25rem', border: `1px solid ${T.border}`, boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', gap: '0.75rem', transition: 'box-shadow 0.2s, transform 0.2s' }}
         onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
@@ -173,7 +173,7 @@ const StatCard = ({ label, value, sub, icon, color }) => (
     </div>
 );
 
-/* ── Progress Bar ────────────────────────────────── */
+/*Progress Bar*/
 const ShipmentProgress = ({ status }) => {
     if (status === 'cancelled') return (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.5rem' }}>
@@ -205,7 +205,7 @@ const ShipmentProgress = ({ status }) => {
     );
 };
 
-/* ── Status Badge ────────────────────────────────── */
+/* Status Badge*/
 const StatusBadge = ({ status }) => {
     const st = statusMap[status] || statusMap['pending'];
     return (
@@ -216,7 +216,7 @@ const StatusBadge = ({ status }) => {
     );
 };
 
-/* ── Order Row (desktop) ─────────────────────────── */
+/*Order Row (desktop)*/
 const OrderRow = ({ order }) => {
     const [hovered, setHovered] = useState(false);
     return (
@@ -241,7 +241,7 @@ const OrderRow = ({ order }) => {
     );
 };
 
-/* ── Order Card (mobile) ─────────────────────────── */
+/*Order Card (mobile)*/
 const OrderCard = ({ order }) => (
     <Link to={`/orders/${order._id}`} style={{ textDecoration: 'none' }}>
         <div style={{ background: T.white, borderRadius: 14, border: `1px solid ${T.border}`, padding: '1rem', marginBottom: '0.65rem', boxShadow: '0 1px 4px rgba(0,0,0,0.04)', transition: 'box-shadow 0.15s, transform 0.15s' }}
@@ -267,34 +267,36 @@ const Dashboard = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
 
-    const [orders, setOrders]           = useState([]);
-    const [loading, setLoading]         = useState(true);
-    const [error, setError]             = useState('');
-    const [search, setSearch]           = useState('');
-    const [filter, setFilter]           = useState('all');
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [search, setSearch] = useState('');
+    const [filter, setFilter] = useState('all');
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showLogout, setShowLogout]   = useState(false);
+    const [showLogout, setShowLogout] = useState(false);
     const [unreadCount, setUnreadCount] = useState(0);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const [ordersRes, notifRes] = await Promise.all([
-                    getMyOrders(user._id),
-                    getMyNotifications(),
-                ]);
-                setOrders(ordersRes.data.data);
-                setUnreadCount(notifRes.data.unreadCount);
-            } catch { setError('Failed to load orders'); }
-            finally { setLoading(false); }
-        })();
-    }, [user]);
+    const fetchData = async () => {
+        setLoading(true);
+        setError('');
+        try {
+            const [ordersRes, notifRes] = await Promise.all([
+                getMyOrders(user._id),
+                getMyNotifications(),
+            ]);
+            setOrders(ordersRes.data.data);
+            setUnreadCount(notifRes.data.unreadCount);
+        } catch { setError('Failed to load orders. Please check your connection.'); }
+        finally { setLoading(false); }
+    };
+
+    useEffect(() => { fetchData(); }, [user]);
 
     const handleLogout = () => { logout(); navigate('/login'); };
 
     const stats = {
-        total:     orders.length,
-        active:    orders.filter(o => ['assigned', 'picked-up', 'in-transit'].includes(o.status)).length,
+        total: orders.length,
+        active: orders.filter(o => ['assigned', 'picked-up', 'in-transit'].includes(o.status)).length,
         delivered: orders.filter(o => ['delivered', 'confirmed'].includes(o.status)).length,
         cancelled: orders.filter(o => o.status === 'cancelled').length,
     };
@@ -304,9 +306,9 @@ const Dashboard = () => {
             o.trackingNumber?.toLowerCase().includes(search.toLowerCase()) ||
             o.deliveryAddress?.city?.toLowerCase().includes(search.toLowerCase());
         const matchFilter = filter === 'all' ? true
-            : filter === 'active'    ? ['assigned', 'picked-up', 'in-transit'].includes(o.status)
-            : filter === 'delivered' ? ['delivered', 'confirmed'].includes(o.status)
-            : o.status === filter;
+            : filter === 'active' ? ['assigned', 'picked-up', 'in-transit'].includes(o.status)
+                : filter === 'delivered' ? ['delivered', 'confirmed'].includes(o.status)
+                    : o.status === filter;
         return matchSearch && matchFilter;
     });
 
@@ -354,10 +356,10 @@ const Dashboard = () => {
 
                     {/* Stat cards */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '1rem', marginBottom: '1.75rem', animation: 'fadeUp 0.35s ease both', animationDelay: '0.05s' }}>
-                        <StatCard label="Total Orders"  value={stats.total}     sub={`${stats.total === 1 ? '1 order' : `${stats.total} orders`} created`}          icon={<Package size={20} />}     color={T.navy} />
-                        <StatCard label="Active"        value={stats.active}    sub={stats.active === 0 ? 'None in transit' : `${stats.active} currently moving`}          icon={<Zap size={20} />}         color="#2563eb" />
-                        <StatCard label="Delivered"     value={stats.delivered} sub={stats.delivered === 0 ? 'No deliveries yet' : `${stats.delivered} completed`}         icon={<CheckCircle size={20} />} color="#16a34a" />
-                        <StatCard label="Cancelled"     value={stats.cancelled} sub={stats.cancelled === 0 ? 'None cancelled' : `${stats.cancelled} cancelled`}            icon={<XCircle size={20} />}     color="#dc2626" />
+                        <StatCard label="Total Orders" value={stats.total} sub={`${stats.total === 1 ? '1 order' : `${stats.total} orders`} created`} icon={<Package size={20} />} color={T.navy} />
+                        <StatCard label="Active" value={stats.active} sub={stats.active === 0 ? 'None in transit' : `${stats.active} currently moving`} icon={<Zap size={20} />} color="#2563eb" />
+                        <StatCard label="Delivered" value={stats.delivered} sub={stats.delivered === 0 ? 'No deliveries yet' : `${stats.delivered} completed`} icon={<CheckCircle size={20} />} color="#16a34a" />
+                        <StatCard label="Cancelled" value={stats.cancelled} sub={stats.cancelled === 0 ? 'None cancelled' : `${stats.cancelled} cancelled`} icon={<XCircle size={20} />} color="#dc2626" />
                     </div>
 
                     {/* Action banner */}
@@ -373,7 +375,7 @@ const Dashboard = () => {
                                 onMouseLeave={e => { e.currentTarget.style.background = T.orange; e.currentTarget.style.transform = 'translateY(0)'; }}>
                                 <Truck size={14} /> Create Order <ArrowRight size={13} />
                             </Link>
-                            
+
                         </div>
                     </div>
 
@@ -404,8 +406,13 @@ const Dashboard = () => {
                                 <div className="spinner-border" style={{ color: T.navy }} />
                             </div>
                         ) : error ? (
-                            <div style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#dc2626', fontSize: '0.85rem' }}>
-                                <AlertCircle size={16} />{error}
+                            <div style={{ padding: '2rem', textAlign: 'center' }}>
+                                <AlertCircle size={28} color="#dc2626" style={{ marginBottom: '0.75rem' }} />
+                                <p style={{ color: '#dc2626', fontWeight: 600, margin: '0 0 1rem', fontSize: '0.88rem' }}>{error}</p>
+                                <button onClick={fetchData}
+                                    style={{ background: T.navy, color: '#fff', border: 'none', borderRadius: 10, padding: '0.55rem 1.4rem', fontWeight: 700, fontSize: '0.83rem', cursor: 'pointer' }}>
+                                    Try Again
+                                </button>
                             </div>
                         ) : filtered.length === 0 ? (
                             <div style={{ padding: '3.5rem 1rem', textAlign: 'center' }}>

@@ -8,13 +8,13 @@ import logo from '../assets/logo.png';
 const API_BASE = 'http://localhost:7001/api/v1';
 
 const statusConfig = {
-    'pending':    { color: '#f5a623', label: 'Pending',    icon: <Clock size={18} />,        step: 0 },
-    'assigned':   { color: '#0d6efd', label: 'Assigned',   icon: <Truck size={18} />,        step: 1 },
-    'picked-up':  { color: '#0d6efd', label: 'Picked Up',  icon: <Package size={18} />,      step: 2 },
-    'in-transit': { color: '#e8610a', label: 'In Transit', icon: <Truck size={18} />,        step: 3 },
-    'delivered':  { color: '#198754', label: 'Delivered',  icon: <CheckCircle size={18} />,  step: 4 },
-    'confirmed':  { color: '#198754', label: 'Confirmed',  icon: <CheckCircle size={18} />,  step: 4 },
-    'cancelled':  { color: '#dc3545', label: 'Cancelled',  icon: <XCircle size={18} />,      step: -1 },
+    'pending': { color: '#f5a623', label: 'Pending', icon: <Clock size={18} />, step: 0 },
+    'assigned': { color: '#0d6efd', label: 'Assigned', icon: <Truck size={18} />, step: 1 },
+    'picked-up': { color: '#0d6efd', label: 'Picked Up', icon: <Package size={18} />, step: 2 },
+    'in-transit': { color: '#e8610a', label: 'In Transit', icon: <Truck size={18} />, step: 3 },
+    'delivered': { color: '#198754', label: 'Delivered', icon: <CheckCircle size={18} />, step: 4 },
+    'confirmed': { color: '#198754', label: 'Confirmed', icon: <CheckCircle size={18} />, step: 4 },
+    'cancelled': { color: '#dc3545', label: 'Cancelled', icon: <XCircle size={18} />, step: -1 },
 };
 
 const steps = ['Pending', 'Assigned', 'Picked Up', 'In Transit', 'Delivered'];
@@ -104,10 +104,12 @@ const TrackOrder = () => {
                                             </div>
                                             <button
                                                 type="submit"
+                                                disabled={loading}  // ← add this
                                                 className="btn fw-bold d-flex align-items-center gap-2"
-                                                style={{ background: '#0a1a3f', color: '#fff', borderRadius: 10, whiteSpace: 'nowrap' }}
+                                                style={{ background: '#0a1a3f', color: '#fff', borderRadius: 10, whiteSpace: 'nowrap', opacity: loading ? 0.7 : 1 }}
                                             >
-                                                <Search size={15} /> Track
+                                                {loading ? <span className="spinner-border spinner-border-sm" /> : <Search size={15} />}
+                                                {loading ? 'Searching...' : 'Track'}
                                             </button>
                                         </div>
                                     </form>

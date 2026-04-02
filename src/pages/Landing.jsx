@@ -70,6 +70,12 @@ const Landing = () => {
                 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
                 @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
 
+                .nav-links1:hover { color: #fbbf24 !important;}
+                .nav-btn1:hover {transform: scale(1.03); transition: transform 0.15s; color: #fdb813 !important; border-color: #fdb813 !important;}
+                .nav-btn2:hover {transform: scale(1.03); transition: transform 0.15s; color: white !important; }
+
+                .btn:hover{ transform: scale(1.03); transition: transform 0.15s; }
+
                 .hero-badge    { animation: fadeSlideUp 0.6s ease both; animation-delay: 0s; }
                 .hero-tagline  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.15s; }
                 .hero-heading  { animation: fadeSlideUp 0.7s ease both; animation-delay: 0.35s; }
@@ -145,11 +151,11 @@ const Landing = () => {
                                 <span className="fw-bold text-white fs-6">LOVELISTICS</span>
                             </Link>
                             <div className="d-none d-lg-flex align-items-center gap-4">
-                                <Link to="/about" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>About</Link>
-                                <Link to="/services" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Services</Link>
-                                <a href={DRIVER_APP_URL + '/register'} target="_blank" rel="noopener noreferrer" className="text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Drive for Us</a>
-                                <Link to="/login" className="text-decoration-none px-3 py-1" style={{ color: '#ffffff', fontSize: '0.95rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '20px' }}>Sign In</Link>
-                                <Link to="/register" className="text-decoration-none px-3 py-1" style={{ backgroundColor: '#fdb813', color: '#0a1a3f', fontSize: '0.95rem', borderRadius: '20px', border: '1px solid #fdb813', fontWeight: '500' }}>Sign Up</Link>
+                                <Link to="/about" className="nav-links1 text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>About</Link>
+                                <Link to="/services" className="nav-links1 text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Services</Link>
+                                <a href={DRIVER_APP_URL + '/register'} target="_blank" rel="noopener noreferrer" className="nav-links1 text-decoration-none fw-semibold" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>Drive for Us</a>
+                                <Link to="/login" className="nav-btn1 text-decoration-none px-3 py-1" style={{ color: '#ffffff', fontSize: '0.95rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '20px' }}>Sign In</Link>
+                                <Link to="/register" className="nav-btn2 text-decoration-none px-3 py-1" style={{ backgroundColor: '#fdb813', color: '#0a1a3f', fontSize: '0.95rem', borderRadius: '20px', border: '1px solid #fdb813', fontWeight: '500' }}>Sign Up</Link>
                             </div>
                             <button className="d-lg-none btn btn-link p-0 border-0" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu"
                                 style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
