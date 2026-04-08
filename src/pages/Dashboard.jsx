@@ -275,7 +275,7 @@ const OrderCard = ({ order }) => (
     </Link>
 );
 
-/* ── Dashboard ───────────────────────────────────── */
+/* Dashboard*/
 const Dashboard = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
