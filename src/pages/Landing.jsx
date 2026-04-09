@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search, Truck, Star, Users, CheckCircle } from 'lucide-react';
+import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search, Truck, Star, Users, CheckCircle, Lock } from 'lucide-react';
 import logo from '../assets/logo.png';
 import heroBackground from '../assets/hero-bg.png';
 import trackingApp from '../assets/tracking-app.png';
@@ -10,6 +10,7 @@ import driverAssigned from '../assets/driver-assigned.png';
 import createOrder from '../assets/create-order.png';
 import trackingBg from '../assets/trackingBg.png';
 import whyChooseUs from '../assets/why-choose-us.png';
+import OnboardingModal from '../components/OnboardingModal';
 
 const DRIVER_APP_URL = import.meta.env.VITE_DRIVER_APP_URL || 'http://localhost:5174';
 
@@ -193,7 +194,7 @@ const Landing = () => {
                     <div className="row align-items-center hero-row">
                         <div className="col-lg-6 text-center text-lg-start hero-content">
 
-                            
+
                             <div className="hero-badge mb-3 d-flex justify-content-center justify-content-lg-start">
                                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(10,26,63,0.08)', border: '1px solid rgba(10,26,63,0.15)', borderRadius: '999px', padding: '0.35rem 1rem', fontSize: '0.8rem', fontWeight: 700, color: '#0a1a3f', letterSpacing: '0.3px' }}>
                                     <span className="live-dot" /> Nigeria's On-Demand Delivery Platform
@@ -216,9 +217,9 @@ const Landing = () => {
 
                             {/* ── Trust signals ── */}
                             <div className="hero-trust d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
-                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><ShieldCheck size={13} /> Verified Drivers Only</span>
-                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><CheckCircle size={13} /> No hidden charges</span>
-                                <span className="trust-pill" style={{borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><MapPin size={13} />GPS tracking</span>
+                                <span className="trust-pill" style={{ borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><ShieldCheck size={13} /> Verified Drivers Only</span>
+                                <span className="trust-pill" style={{ borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><CheckCircle size={13} /> No hidden charges</span>
+                                <span className="trust-pill" style={{ borderColor: '#fdb813', color: '#0a1a3f', width: 'auto' }}><MapPin size={13} />GPS tracking</span>
                             </div>
 
                         </div>
@@ -246,9 +247,9 @@ const Landing = () => {
                     <p className="text-secondary mb-5" style={{ maxWidth: 500, margin: '0 auto 2.5rem' }}>No experience needed. If you can fill a form, you can place a delivery order.</p>
                     <div ref={howItWorksRef} className="row g-4">
                         {[
-                            { num: '01', img: createOrder,    imgAlt: 'Person creating a delivery order on a phone', title: 'Place Request',  desc: 'Enter pickup & drop-off details. Get an instant quote and confirm your order in seconds.' },
-                            { num: '02', img: driverAssigned, imgAlt: 'Courier receiving a delivery assignment',     title: 'Driver Assigned', desc: 'Our smart system assigns the nearest verified driver. You get their details instantly.' },
-                            { num: '03', img: trackingApp,    imgAlt: 'Live tracking app on a phone',               title: 'GPS Tracking',   desc: 'Watch your package move on the map. Get notified when it arrives safely.' },
+                            { num: '01', img: createOrder, imgAlt: 'Person creating a delivery order on a phone', title: 'Place Request', desc: 'Enter pickup & drop-off details. Get an instant quote and confirm your order in seconds.' },
+                            { num: '02', img: driverAssigned, imgAlt: 'Courier receiving a delivery assignment', title: 'Driver Assigned', desc: 'Our smart system assigns the nearest verified driver. You get their details instantly.' },
+                            { num: '03', img: trackingApp, imgAlt: 'Live tracking app on a phone', title: 'GPS Tracking', desc: 'Watch your package move on the map. Get notified when it arrives safely.' },
                         ].map((step) => (
                             <div key={step.num} className={'col-md-4 hiw-card' + (howItWorksInView ? ' visible' : '')}>
                                 <div className="card h-100 border-0 bg-light position-relative overflow-hidden" style={{ borderRadius: '16px', textAlign: 'left' }}>
@@ -353,8 +354,8 @@ const Landing = () => {
                                 )}
                             </form>
                             {/* ── Privacy notice ── */}
-                            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.85rem', marginBottom: 0 }}>
-                                🔒 Your tracking data is private and never shared with third parties.
+                            <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', textAlign: 'center', marginTop: '0.85rem', marginBottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}>
+                                <Lock size={11} /> Your tracking data is private and never shared with third parties.
                             </p>
                         </div>
                     </div>
@@ -378,8 +379,12 @@ const Landing = () => {
                         </Link>
                     </div>
                     {/* ── Bottom trust line ── */}
-                    <p className="mt-4 mb-0" style={{ fontSize: '0.82rem', color: '#6b7a99' }}>
-                        ✓ Free to sign up &nbsp;·&nbsp; ✓ No subscription fees &nbsp;·&nbsp; ✓ Cancel anytime
+                    <p className="mt-4 mb-0" style={{ fontSize: '0.82rem', color: '#6b7a99', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><CheckCircle size={13} color="#16a34a" /> Free to sign up</span>
+                        <span style={{ color: '#d1d5db' }}>·</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><CheckCircle size={13} color="#16a34a" /> No subscription fees</span>
+                        <span style={{ color: '#d1d5db' }}>·</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><CheckCircle size={13} color="#16a34a" /> Cancel anytime</span>
                     </p>
                 </div>
             </section>
@@ -395,7 +400,9 @@ const Landing = () => {
                             </div>
                             <p style={{ opacity: 0.7 }}>Reliable, fast, and secure logistics for modern businesses and individuals. We deliver trust, every time.</p>
                             {/* ── Privacy assurance in footer ── */}
-                            <p style={{ fontSize: '0.78rem', opacity: 0.5, marginBottom: 0 }}>🔒 Your data is never sold or shared with third parties.</p>
+                            <p style={{ fontSize: '0.78rem', opacity: 0.5, marginBottom: 0, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                                <Lock size={11} /> Your data is never sold or shared with third parties.
+                            </p>
                         </div>
                         <div className="col-6 col-lg-2">
                             <h6 className="fw-bold mb-3">Company</h6>
@@ -435,6 +442,7 @@ const Landing = () => {
                     </div>
                 </div>
             </footer>
+            <OnboardingModal />
         </>
     );
 };

@@ -386,6 +386,21 @@ const Dashboard = () => {
                         )}
                     </div>
 
+                    {/* First-time welcome banner — only shown before any order is placed */}
+                    {!loading && orders.length === 0 && (
+                        <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 14, padding: '1rem 1.25rem', marginBottom: '1.75rem', display: 'flex', alignItems: 'flex-start', gap: '0.85rem', animation: 'fadeUp 0.4s ease both', animationDelay: '0.08s' }}>
+                            <div style={{ width: 36, height: 36, borderRadius: 10, background: '#fef3c7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                <Zap size={17} color="#92400e" />
+                            </div>
+                            <div>
+                                <p style={{ margin: '0 0 0.2rem', fontWeight: 700, fontSize: '0.88rem', color: '#92400e' }}>You're all set — place your first order</p>
+                                <p style={{ margin: 0, fontSize: '0.78rem', color: '#b45309', lineHeight: 1.5 }}>
+                                    Fill in pickup and drop-off details. A verified driver will be assigned automatically and you can track them live.
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Action banner */}
                     <div style={{ background: `linear-gradient(135deg, ${T.navy} 0%, #1e3a8a 100%)`, borderRadius: 16, padding: '1.35rem 1.75rem', marginBottom: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', boxShadow: '0 4px 24px rgba(13,31,79,0.18)', animation: 'fadeUp 0.4s ease both', animationDelay: '0.1s' }}>
                         <div>
@@ -439,16 +454,31 @@ const Dashboard = () => {
                                 </button>
                             </div>
                         ) : filtered.length === 0 ? (
-                            <div style={{ padding: '3.5rem 1rem', textAlign: 'center' }}>
-                                <div style={{ width: 64, height: 64, borderRadius: 16, background: T.light, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-                                    <Package size={28} color={T.border} />
+                            orders.length === 0 ? (
+                                // First-time user — no orders at all
+                                <div style={{ padding: '3.5rem 1rem', textAlign: 'center' }}>
+                                    <div style={{ width: 68, height: 68, borderRadius: 18, background: 'rgba(13,31,79,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                                        <Package size={30} color={T.navy} />
+                                    </div>
+                                    <p style={{ fontWeight: 800, color: T.dark, margin: '0 0 0.4rem', fontSize: '1rem' }}>Welcome! Let's send your first package.</p>
+                                    <p style={{ fontSize: '0.82rem', color: T.muted, margin: '0 0 0.3rem', maxWidth: 300, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6 }}>
+                                        Place an order in under 2 minutes. Enter pickup and drop-off details and a driver will be assigned right away.
+                                    </p>
+                                    <p style={{ fontSize: '0.75rem', color: '#94a3b8', margin: '0 0 1.75rem' }}>No hidden charges. You only pay what you see.</p>
+                                    <Link to="/create-order" style={{ background: T.orange, color: '#fff', padding: '0.7rem 1.8rem', borderRadius: 10, fontWeight: 700, fontSize: '0.88rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.45rem', boxShadow: '0 2px 8px rgba(232,97,10,0.3)' }}>
+                                        <PlusCircle size={15} /> Place Your First Order
+                                    </Link>
                                 </div>
-                                <p style={{ fontWeight: 700, color: T.dark, margin: '0 0 0.3rem', fontSize: '0.95rem' }}>No orders found</p>
-                                <p style={{ fontSize: '0.8rem', color: T.muted, margin: '0 0 1.5rem' }}>Try a different filter or create your first shipment</p>
-                                <Link to="/create-order" style={{ background: T.navy, color: '#fff', padding: '0.65rem 1.6rem', borderRadius: 10, fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                                    <PlusCircle size={15} /> Place an Order
-                                </Link>
-                            </div>
+                            ) : (
+                                // Has orders but search/filter returned nothing
+                                <div style={{ padding: '3rem 1rem', textAlign: 'center' }}>
+                                    <div style={{ width: 56, height: 56, borderRadius: 14, background: T.light, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.85rem' }}>
+                                        <Search size={22} color={T.border} />
+                                    </div>
+                                    <p style={{ fontWeight: 700, color: T.dark, margin: '0 0 0.3rem', fontSize: '0.92rem' }}>No matching orders</p>
+                                    <p style={{ fontSize: '0.78rem', color: T.muted, margin: 0 }}>Try a different search term or filter</p>
+                                </div>
+                            )
                         ) : (
                             <>
                                 {/* Desktop table */}
