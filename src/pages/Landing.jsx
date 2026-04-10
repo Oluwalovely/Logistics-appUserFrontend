@@ -4,12 +4,12 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Package, MapPin, Bell, ShieldCheck, CircleDollarSign, Search, Truck, Star, Users, CheckCircle, Lock } from 'lucide-react';
 import logo from '../assets/logo.png';
-import heroBackground from '../assets/hero-bg.png';
-import trackingApp from '../assets/tracking-app.png';
-import driverAssigned from '../assets/driver-assigned.png';
-import createOrder from '../assets/create-order.png';
-import trackingBg from '../assets/trackingBg.png';
-import whyChooseUs from '../assets/why-choose-us.png';
+import heroBackground from '../assets/hero-bg.avif';
+import trackingApp from '../assets/tracking-app.avif';
+import driverAssigned from '../assets/driver-assigned.avif';
+import createOrder from '../assets/create-order.avif';
+import trackingBg from '../assets/trackingBg.avif';
+import whyChooseUs from '../assets/why-choose-us.avif';
 import OnboardingModal from '../components/OnboardingModal';
 
 const DRIVER_APP_URL = import.meta.env.VITE_DRIVER_APP_URL || 'http://localhost:5174';
