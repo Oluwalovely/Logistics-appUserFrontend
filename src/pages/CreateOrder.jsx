@@ -166,47 +166,43 @@ const CreateOrder = () => {
                                     {step === 0 && (
                                         <div>
                                             <SectionHeader icon={<MapPin size={16} />} title="Sender & Pickup" />
-                                            <div className="row g-2 mb-2 flex-wrap">
-                                                <div className="col-7">
-                                                    <div className="input-group">
-                                                        <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
-                                                            <User size={14} color="#94a3b8" />
-                                                        </span>
-                                                        <input type="text" className="form-control" name="senderName"
-                                                            placeholder="e.g. Chidi Okeke"
-                                                            value={formData.senderName} onChange={handleChange}
-                                                            style={{ borderRadius: '0 10px 10px 0' }} />
-                                                    </div>
-                                                    <HelperText text="Full name of the person sending the package" />
+                                            <div className="mb-3">
+                                                <div className="input-group">
+                                                    <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
+                                                        <User size={14} color="#94a3b8" />
+                                                    </span>
+                                                    <input type="text" className="form-control" name="senderName"
+                                                        placeholder="e.g. Chidi Okeke"
+                                                        value={formData.senderName} onChange={handleChange}
+                                                        style={{ borderRadius: '0 10px 10px 0' }} />
                                                 </div>
-                                                <div className="col-5">
-                                                    <div className="input-group">
-                                                        <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
-                                                            <Phone size={14} color="#94a3b8" />
-                                                        </span>
-                                                        <input type="tel" className="form-control" name="senderPhone"
-                                                            placeholder="e.g. 08012345678"
-                                                            value={formData.senderPhone} onChange={handleChange}
-                                                            style={{ borderRadius: '0 10px 10px 0' }} />
-                                                    </div>
-                                                    <HelperText text="Active Nigerian number" />
-                                                </div>
+                                                <HelperText text="Full name of the person sending the package" />
                                             </div>
-                                            <div className="row g-2 mb-1 flex-wrap">
-                                                <div className="col-8">
-                                                    <input type="text" className="form-control" name="pickupStreet"
-                                                        placeholder="e.g. 12 Awolowo Road"
-                                                        value={formData.pickupStreet} onChange={handleChange}
-                                                        style={inputStyle} />
-                                                    <HelperText text="Street address where driver will pick up" />
+                                            <div className="mb-3">
+                                                <div className="input-group">
+                                                    <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
+                                                        <Phone size={14} color="#94a3b8" />
+                                                    </span>
+                                                    <input type="tel" className="form-control" name="senderPhone"
+                                                        placeholder="e.g. 08012345678"
+                                                        value={formData.senderPhone} onChange={handleChange}
+                                                        style={{ borderRadius: '0 10px 10px 0' }} />
                                                 </div>
-                                                <div className="col-4">
-                                                    <input type="text" className="form-control" name="pickupCity"
-                                                        placeholder="e.g. Osogbo"
-                                                        value={formData.pickupCity} onChange={handleChange}
-                                                        style={inputStyle} />
-                                                    <HelperText text="City" />
-                                                </div>
+                                                <HelperText text="Active Nigerian number" />
+                                            </div>
+                                            <div className="mb-3">
+                                                <input type="text" className="form-control" name="pickupStreet"
+                                                    placeholder="e.g. 12 Awolowo Road"
+                                                    value={formData.pickupStreet} onChange={handleChange}
+                                                    style={inputStyle} />
+                                                <HelperText text="Street address where driver will pick up" />
+                                            </div>
+                                            <div className="mb-3">
+                                                <input type="text" className="form-control" name="pickupCity"
+                                                    placeholder="e.g. Osogbo"
+                                                    value={formData.pickupCity} onChange={handleChange}
+                                                    style={inputStyle} />
+                                                <HelperText text="City" />
                                             </div>
                                         </div>
                                     )}
@@ -215,47 +211,43 @@ const CreateOrder = () => {
                                     {step === 1 && (
                                         <div>
                                             <SectionHeader icon={<Flag size={16} />} title="Receiver & Delivery" />
-                                            <div className="row g-2 mb-2 flex-wrap">
-                                                <div className="col-7">
-                                                    <div className="input-group">
-                                                        <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
-                                                            <User size={14} color="#94a3b8" />
-                                                        </span>
-                                                        <input type="text" className="form-control" name="receiverName"
-                                                            placeholder="e.g. Amaka Nwosu"
-                                                            value={formData.receiverName} onChange={handleChange}
-                                                            style={{ borderRadius: '0 10px 10px 0' }} />
-                                                    </div>
-                                                    <HelperText text="Full name of the person receiving the package" />
+                                            <div className="mb-3">
+                                                <div className="input-group">
+                                                    <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
+                                                        <User size={14} color="#94a3b8" />
+                                                    </span>
+                                                    <input type="text" className="form-control" name="receiverName"
+                                                        placeholder="e.g. Amaka Nwosu"
+                                                        value={formData.receiverName} onChange={handleChange}
+                                                        style={{ borderRadius: '0 10px 10px 0' }} />
                                                 </div>
-                                                <div className="col-5">
-                                                    <div className="input-group">
-                                                        <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
-                                                            <Phone size={14} color="#94a3b8" />
-                                                        </span>
-                                                        <input type="tel" className="form-control" name="receiverPhone"
-                                                            placeholder="e.g. 08087654321"
-                                                            value={formData.receiverPhone} onChange={handleChange}
-                                                            style={{ borderRadius: '0 10px 10px 0' }} />
-                                                    </div>
-                                                    <HelperText text="Driver will contact on arrival" />
-                                                </div>
+                                                <HelperText text="Full name of the person receiving the package" />
                                             </div>
-                                            <div className="row g-2 mb-1 flex-wrap">
-                                                <div className="col-8">
-                                                    <input type="text" className="form-control" name="deliveryStreet"
-                                                        placeholder="e.g. 7 Gbongan Road"
-                                                        value={formData.deliveryStreet} onChange={handleChange}
-                                                        style={inputStyle} />
-                                                    <HelperText text="Street address where driver will deliver" />
+                                            <div className="mb-3">
+                                                <div className="input-group">
+                                                    <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
+                                                        <Phone size={14} color="#94a3b8" />
+                                                    </span>
+                                                    <input type="tel" className="form-control" name="receiverPhone"
+                                                        placeholder="e.g. 08087654321"
+                                                        value={formData.receiverPhone} onChange={handleChange}
+                                                        style={{ borderRadius: '0 10px 10px 0' }} />
                                                 </div>
-                                                <div className="col-4">
-                                                    <input type="text" className="form-control" name="deliveryCity"
-                                                        placeholder="e.g. Ibadan"
-                                                        value={formData.deliveryCity} onChange={handleChange}
-                                                        style={inputStyle} />
-                                                    <HelperText text="City" />
-                                                </div>
+                                                <HelperText text="Driver will contact on arrival" />
+                                            </div>
+                                            <div className="mb-3">
+                                                <input type="text" className="form-control" name="deliveryStreet"
+                                                    placeholder="e.g. 7 Gbongan Road"
+                                                    value={formData.deliveryStreet} onChange={handleChange}
+                                                    style={inputStyle} />
+                                                <HelperText text="Street address where driver will deliver" />
+                                            </div>
+                                            <div className="mb-3">
+                                                <input type="text" className="form-control" name="deliveryCity"
+                                                    placeholder="e.g. Ibadan"
+                                                    value={formData.deliveryCity} onChange={handleChange}
+                                                    style={inputStyle} />
+                                                <HelperText text="City" />
                                             </div>
                                         </div>
                                     )}
@@ -264,14 +256,16 @@ const CreateOrder = () => {
                                     {step === 2 && (
                                         <div>
                                             <SectionHeader icon={<Package size={16} />} title="Package Details" />
-                                            <input type="text" className="form-control mb-1" name="packageDescription"
-                                                placeholder="e.g. Fragile electronics, sealed envelope, clothing"
-                                                value={formData.packageDescription} onChange={handleChange}
-                                                style={inputStyle} />
-                                            <HelperText text="Brief description helps the driver handle it correctly (optional)" />
+                                            <div className="mb-3">
+                                                <input type="text" className="form-control" name="packageDescription"
+                                                    placeholder="e.g. Fragile electronics, sealed envelope, clothing"
+                                                    value={formData.packageDescription} onChange={handleChange}
+                                                    style={inputStyle} />
+                                                <HelperText text="Brief description helps the driver handle it correctly (optional)" />
+                                            </div>
 
-                                            <div className="mt-3">
-                                                <input type="number" className="form-control mb-1" name="weight"
+                                            <div className="mb-3">
+                                                <input type="number" className="form-control" name="weight"
                                                     placeholder="e.g. 1.5"
                                                     value={formData.weight} onChange={handleChange}
                                                     min="0.1" step="0.1"
