@@ -166,7 +166,7 @@ const CreateOrder = () => {
                                     {step === 0 && (
                                         <div>
                                             <SectionHeader icon={<MapPin size={16} />} title="Sender & Pickup" />
-                                            <div className="row g-2 mb-2">
+                                            <div className="row g-2 mb-2 flex-wrap">
                                                 <div className="col-7">
                                                     <div className="input-group">
                                                         <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
@@ -192,7 +192,7 @@ const CreateOrder = () => {
                                                     <HelperText text="Active Nigerian number" />
                                                 </div>
                                             </div>
-                                            <div className="row g-2 mb-1">
+                                            <div className="row g-2 mb-1 flex-wrap">
                                                 <div className="col-8">
                                                     <input type="text" className="form-control" name="pickupStreet"
                                                         placeholder="e.g. 12 Awolowo Road"
@@ -215,7 +215,7 @@ const CreateOrder = () => {
                                     {step === 1 && (
                                         <div>
                                             <SectionHeader icon={<Flag size={16} />} title="Receiver & Delivery" />
-                                            <div className="row g-2 mb-2">
+                                            <div className="row g-2 mb-2 flex-wrap">
                                                 <div className="col-7">
                                                     <div className="input-group">
                                                         <span className="input-group-text" style={{ borderRadius: '10px 0 0 10px', background: '#f4f6fb', border: '1px solid #dee2e6' }}>
@@ -241,7 +241,7 @@ const CreateOrder = () => {
                                                     <HelperText text="Driver will contact on arrival" />
                                                 </div>
                                             </div>
-                                            <div className="row g-2 mb-1">
+                                            <div className="row g-2 mb-1 flex-wrap">
                                                 <div className="col-8">
                                                     <input type="text" className="form-control" name="deliveryStreet"
                                                         placeholder="e.g. 7 Gbongan Road"
